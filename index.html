@@ -102,7 +102,11 @@ cite{font-style:normal;color:var(--ink-2);font-size:.92em;white-space:nowrap}
 .hero h1{font-size:var(--step-3);margin-block:0 .5em}
 .hero h1 .w{font-weight:700;color:var(--hero-coral)}
 .hero__lede{font-size:var(--step-1);line-height:1.45;max-width:34ch;color:var(--hero-ink)}
-.byline{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;color:var(--hero-ink)}
+.byline{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;color:var(--hero-ink);container-type:inline-size}
+/* the three names stay on one line; if the column is narrow the whole byline shrinks together. On phones names break only between names */
+.byline>span{font-size:min(1em,100cqi / 40)}
+.byline__names{white-space:nowrap}
+@media (max-width:600px){.byline>span{font-size:inherit}.byline__names{white-space:normal}}
 .pixels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1rem,3vw,2rem)}
 .pix{display:grid;gap:.6rem}
 .pix__grid{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;aspect-ratio:1;max-width:100%}
@@ -302,7 +306,7 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
     <div>
       <h1>Half of those who play. <span class="w">Less than a quarter</span> of those who make.</h1>
       <p class="hero__lede">A critical data story about women in the Swedish gaming industry from 2015 to 2025, and what the numbers can and cannot tell us about gender equality.</p>
-      <p class="byline mono"><span>Lucília Costa Oliveira, Mariia Lieshukova, Martin Politic</span><span>Data and Society, Malmö University</span><span>5 November 2026</span></p>
+      <p class="byline mono"><span class="byline__names">Lucília&nbsp;Costa&nbsp;Oliveira, Mariia&nbsp;Lieshukova, Martin&nbsp;Razvan&nbsp;Politic</span><span>Data and Society, Malmö University</span><span>5 November 2026</span></p>
     </div>
     <div class="pixels" role="img" aria-label="Two grids of 100 squares. Players aged 16 and over in Sweden: 52 of 100 are women. Employees in the Swedish games industry: 24 of 100 are women.">
       <div class="pix">
@@ -664,7 +668,7 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
 <footer class="site wrap">
   <div class="wide">
     <span>Critical Data Story · Women in the Swedish Gaming Industry</span>
-    <span class="site__credits"><span>Lucília Costa Oliveira, Mariia Lieshukova, Martin Politic · Data and Society, Malmö University, 2026</span><span>Drawings by Mariia Lieshukova</span></span>
+    <span class="site__credits"><span>Lucília Costa Oliveira, Mariia Lieshukova, Martin Razvan Politic · Data and Society, Malmö University, 2026</span><span>Drawings by Mariia Lieshukova</span></span>
   </div>
 </footer>
 
