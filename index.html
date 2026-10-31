@@ -748,11 +748,11 @@ footer.site .col>span{font-size:var(--step--1)}
   function tell(){
     var n = '<b>' + landed + '</b>';
     scoreText.innerHTML = landed >= FULL
-      ? n + ' collected. Your grid is full. The real ones are not: women are 52 of every 100 players but only 24 of every 100 game makers. Read on to see why.'
+      ? n + ' collected. Your grid is full. The real ones are not: 52% of players are women, but only 24% of game makers. Read on to see why.'
       : landed >= PLAYERS
-      ? n + ' collected: as many as the women among every 100 players. That is more than twice the 24 among every 100 game makers. Why don\u2019t the two match? Fill your grid, or read on.'
+      ? n + ' collected: the percentage of players who are women, more than twice the percentage of game makers. Why don\u2019t the two match? Fill your grid, or read on.'
       : landed >= MAKERS
-      ? n + ' collected. At 24 you matched the women among every 100 game makers. Keep going to 52, the women among every 100 players.'
+      ? n + ' collected. At 24 you matched the percentage of game makers who are women. Keep going to 52, the percentage of players.'
       : n + ' collected. Keep going.';
     score.classList.remove('bump'); void score.offsetWidth; score.classList.add('bump');
   }
