@@ -227,7 +227,8 @@ details.about[open] .about__cols{animation:open .45s cubic-bezier(.2,.8,.2,1)}
 .reflect>.col{position:relative;z-index:1}
 /* beige controllers in the side margins only; placed and moved by JS */
 .reflect__pattern{position:absolute;inset:0;pointer-events:none}
-.reflect__pattern img{position:absolute;left:0;top:0;height:auto;will-change:transform;transition:opacity .3s}
+.reflect__pattern img{position:absolute;left:0;top:0;height:auto;will-change:transform}
+.reflect__pattern b{position:absolute;left:0;top:0;border-radius:1px;opacity:0;will-change:transform,opacity}
 .reflect h2{font-size:var(--step-2);margin-bottom:1.5rem}
 .reflect a{color:#9ED3DF}
 .reflect .big{font-family:var(--font-display);font-weight:500;font-size:var(--step-1);line-height:1.4;color:#F3DECA}
@@ -810,14 +811,31 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
   window.addEventListener('scroll', tocTone, {passive: true});
   tocTone();
 
-  /* reflection band: the hero's controllers return, kept to the side margins so they never sit behind text */
+  /* how far the reader is through the reflection band: 0 until its top has risen past the
+     middle of the screen (so the controllers are seen whole first), 1 near its end */
+  function reflectProgress(box){
+    if (reduce) return .5;
+    var p = (window.innerHeight * .4 - box.top) / box.height;
+    return Math.min(1, Math.max(0, p));
+  }
+  function reflectZones(box){
+    var col = band.querySelector('.col').getBoundingClientRect(), gap = 18;
+    return [[16, col.left - box.left - gap], [col.right - box.left + gap, box.width - 16]];
+  }
+  function underList(box, x, y, w){
+    var tocEl = document.getElementById('toc');
+    if (!tocEl.classList.contains('on') || getComputedStyle(tocEl).display === 'none') return false;
+    var l = tocEl.getBoundingClientRect();
+    return box.left + x < l.right + 14 && box.left + x + w > l.left - 14 && box.top + y < l.bottom + 14 && box.top + y + w > l.top - 14;
+  }
+
+  /* variant 2: the controllers break into small squares that drift apart and fade as you read;
+     tied to scroll, so scrolling back puts them together again */
   var refl = document.getElementById('reflectPattern'), reflTiles = [];
   function layReflect(){
-    var box = band.getBoundingClientRect(), col = band.querySelector('.col').getBoundingClientRect();
-    var gap = 18, r = rand(11), html = [];
-    var zones = [[16, col.left - box.left - gap], [col.right - box.left + gap, box.width - 16]];
+    var box = band.getBoundingClientRect(), r = rand(11), html = [];
     reflTiles = [];
-    zones.forEach(function(z){
+    reflectZones(box).forEach(function(z){
       var width = z[1] - z[0];
       if (width < 40) return;
       var size = Math.min(84, width), cols = Math.max(1, Math.floor(width / (size * 1.6)));
@@ -825,34 +843,44 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
         for (var c = 0; c < cols; c++) {
           var li = r() < .5 ? 0 : r() < .7 ? 1 : 2, L = LAYERS[li], sz = Math.round(size * (.7 + li * .15));
           var cx = z[0] + (c + .5) * width / cols + (r() - .5) * Math.max(0, width / cols - sz);
-          var coral = li === 2 && r() < .3, alpha = (L.alpha * (coral ? 1.8 : 1.6)).toFixed(2);
-          reflTiles.push({x: cx, y: y + (r() - .5) * size * .6, size: sz, L: L, rot: r() * 360, dir: r() < .5 ? -1 : 1, alpha: alpha});
-          html.push('<img src="img/joystick-' + (coral ? 'coral' : 'beige') + '.png" alt="" style="width:' + sz + 'px;opacity:' + alpha + '">');
+          var coral = li === 2 && r() < .3, alpha = L.alpha * (coral ? 1.8 : 1.6);
+          var bits = [];
+          for (var b = 0; b < 10; b++) {
+            var ang = r() * Math.PI * 2, dist = 26 + r() * 54;
+            bits.push({ox: (r() - .5) * sz * .7, oy: (r() - .5) * sz * .5, dx: Math.cos(ang) * dist, dy: Math.sin(ang) * dist - 18, s: Math.round(3 + r() * 4), spin: (r() - .5) * 240});
+          }
+          reflTiles.push({x: cx, y: y + (r() - .5) * size * .6, size: sz, L: L, rot: r() * 360, dir: r() < .5 ? -1 : 1, alpha: alpha, t: .15 + r() * .72, bits: bits});
+          html.push('<img src="img/joystick-' + (coral ? 'coral' : 'beige') + '.png" alt="" style="width:' + sz + 'px;opacity:' + alpha.toFixed(2) + '">');
+          bits.forEach(function(bt){ html.push('<b style="width:' + bt.s + 'px;height:' + bt.s + 'px;background:' + (coral ? 'var(--women)' : '#F3DECA') + '"></b>'); });
         }
       }
     });
     refl.innerHTML = html.join('');
-    for (var i = 0; i < reflTiles.length; i++) reflTiles[i].el = refl.children[i];
+    var n = 0, kids = refl.children;
+    reflTiles.forEach(function(k){ k.el = kids[n++]; k.bits.forEach(function(bt){ bt.el = kids[n++]; }); });
     paintReflect();
   }
   function paintReflect(){
-    /* 0 when the band's centre is mid-screen; tiles drift against the scroll */
-    var box = band.getBoundingClientRect(), off = reduce ? 0 : box.top + box.height / 2 - window.innerHeight / 2;
+    var box = band.getBoundingClientRect();
     if (box.bottom < -100 || box.top > window.innerHeight + 100) return;
-    /* tiles that would sit under the fixed chapter list step aside (fade out) */
-    var tocEl = document.getElementById('toc'), list = tocEl.classList.contains('on') && getComputedStyle(tocEl).display !== 'none' ? tocEl.getBoundingClientRect() : null;
+    var p = reflectProgress(box), off = reduce ? 0 : box.top + box.height / 2 - window.innerHeight / 2;
     reflTiles.forEach(function(k){
+      var d = Math.min(1, Math.max(0, (p - k.t) / .16)), e = 1 - Math.pow(1 - d, 3);
       var x = k.x - k.size / 2, y = k.y - k.size / 2 + off * k.L.speed * .5;
-      var under = list && box.left + x < list.right + 14 && box.left + x + k.size > list.left - 14 && box.top + y < list.bottom + 14 && box.top + y + k.size > list.top - 14;
-      k.el.style.opacity = under ? 0 : k.alpha;
-      k.el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) rotate(' + (k.rot + off * k.L.turn * 3 * k.dir).toFixed(2) + 'deg)';
+      var hide = underList(box, x, y, k.size);
+      k.el.style.opacity = hide ? 0 : (k.alpha * Math.pow(1 - d, 1.6)).toFixed(3);
+      k.el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) rotate(' + (k.rot + off * k.L.turn * 3 * k.dir).toFixed(2) + 'deg) scale(' + (1 - d * .3).toFixed(3) + ')';
+      var cx = k.x, cy = k.y + off * k.L.speed * .5;
+      k.bits.forEach(function(bt){
+        var a = d <= 0 || d >= 1 || hide ? 0 : Math.sin(Math.PI * Math.min(1, d * 1.15)) * Math.min(1, k.alpha * 3.2);
+        bt.el.style.opacity = a.toFixed(3);
+        bt.el.style.transform = 'translate3d(' + (cx + bt.ox + bt.dx * e - bt.s / 2).toFixed(1) + 'px,' + (cy + bt.oy + bt.dy * e - bt.s / 2).toFixed(1) + 'px,0) rotate(' + (bt.spin * e).toFixed(1) + 'deg)';
+      });
     });
   }
   layReflect();
   window.addEventListener('scroll', paintReflect, {passive: true});
-
   window.addEventListener('resize', function(){ clearTimeout(layReflect.t); layReflect.t = setTimeout(layReflect, 200); });
-  /* the chapter list fades in after load, so measure again once it is shown */
   setTimeout(layReflect, 600);
 
   /* chapter list: highlight the chapter in the middle of the screen, hide it over the hero */
