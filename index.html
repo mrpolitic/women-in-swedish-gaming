@@ -70,7 +70,7 @@ cite{font-style:normal;color:var(--ink-2);font-size:.92em;white-space:nowrap}
 .toc a.dark.on{color:var(--paper);border-left-color:var(--women)}
 @media (max-width:1000px){.toc{display:none}}
 /* when the margin is narrow, nudge the reading column right so the list never overlaps it */
-@media (min-width:1001px){main .col{margin-left:max(174px,calc((100% - 66ch) / 2))}main .col .col{margin-left:0}}
+@media (min-width:1001px){main .col,footer.site .col{margin-left:max(174px,calc((100% - 66ch) / 2))}main .col .col{margin-left:0}}
 
 /* hero */
 .hero{background:var(--band);padding-block:clamp(3.5rem,8vw,7rem) clamp(3rem,6vw,5rem);position:relative;overflow:hidden;min-height:100vh;min-height:100svh;display:flex;align-items:center;
@@ -252,10 +252,11 @@ details.about[open] .about__cols{animation:open .45s cubic-bezier(.2,.8,.2,1)}
 .end section+section{margin-top:3rem}
 .refs{margin:0;padding:0;list-style:none;display:grid;gap:.75rem;font-size:var(--step--1);line-height:1.5}
 .refs li{padding-left:1.6em;text-indent:-1.6em;overflow-wrap:anywhere}
-footer.site{border-top:1px solid var(--line);padding-block:2rem calc(2rem + env(safe-area-inset-bottom,0px));color:var(--ink-2);font-size:var(--step--1)}
-footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 2rem}
-.site__credits{display:flex;flex-direction:column;align-items:flex-end;gap:.25rem;text-align:right}
-@media (max-width:820px){.site__credits{align-items:flex-start;text-align:left}}
+footer.site{border-top:1px solid var(--line);padding-block:2rem calc(2rem + env(safe-area-inset-bottom,0px));color:var(--ink-2)}
+/* footer lines up with the text column; the font size sits on the lines so the column's ch width matches main */
+footer.site .col{display:flex;flex-direction:column;gap:.5rem}
+footer.site .col>span{font-size:var(--step--1)}
+.site__credits{display:flex;flex-direction:column;gap:.25rem}
 
 /* reveal (only applied by JS to content below the first screen) */
 .js .reveal.pending{opacity:0;transform:translateY(18px)}
@@ -666,7 +667,7 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
 </main>
 
 <footer class="site wrap">
-  <div class="wide">
+  <div class="col">
     <span>Critical Data Story · Women in the Swedish Gaming Industry</span>
     <span class="site__credits"><span>Lucília Costa Oliveira, Mariia Lieshukova, Martin Razvan Politic · Data and Society, Malmö University, 2026</span><span>Drawings by Mariia Lieshukova</span></span>
   </div>
