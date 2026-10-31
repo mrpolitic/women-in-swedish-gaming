@@ -935,7 +935,17 @@ footer.site .col>span{font-size:var(--step--1)}
 
   /* variant 2: the controllers break into small squares that drift apart and fade as you read;
      tied to scroll, so scrolling back puts them together again */
-  var refl = document.getElementById('reflectPattern'), reflTiles = [];
+  var refl = document.getElementById('reflectPattern'), reflTiles = [], inkPts = [];
+  /* sample points on the drawn lines of the controller, so the specks break off the drawing itself */
+  var ink = new Image();
+  ink.onload = function(){
+    var n = 64, c = document.createElement('canvas'), x = c.getContext('2d');
+    c.width = c.height = n; x.drawImage(ink, 0, 0, n, n);
+    var px = x.getImageData(0, 0, n, n).data;
+    for (var i = 0; i < n * n; i++) if (px[i * 4 + 3] > 140) inkPts.push([(i % n + .5) / n - .5, (Math.floor(i / n) + .5) / n - .5]);
+    if (inkPts.length) layReflect();
+  };
+  ink.src = 'img/joystick-beige.png';
   function layReflect(){
     var box = band.getBoundingClientRect(), r = rand(11), html = [];
     reflTiles = [];
@@ -949,9 +959,9 @@ footer.site .col>span{font-size:var(--step--1)}
           var cx = z[0] + (c + .5) * width / cols + (r() - .5) * Math.max(0, width / cols - sz);
           var coral = li === 2 && r() < .3, alpha = L.alpha * (coral ? 1.8 : 1.6);
           var bits = [];
-          for (var b = 0; b < 10; b++) {
-            var ang = r() * Math.PI * 2, dist = 26 + r() * 54;
-            bits.push({ox: (r() - .5) * sz * .7, oy: (r() - .5) * sz * .5, dx: Math.cos(ang) * dist, dy: Math.sin(ang) * dist - 18, s: Math.round(3 + r() * 4), spin: (r() - .5) * 240});
+          for (var b = 0; b < 18; b++) {
+            var ang = r() * Math.PI * 2, dist = 22 + r() * 46, pt = inkPts.length ? inkPts[Math.floor(r() * inkPts.length)] : [(r() - .5) * .7, (r() - .5) * .5];
+            bits.push({ox: pt[0] * sz, oy: pt[1] * sz, dx: Math.cos(ang) * dist, dy: Math.sin(ang) * dist - 18, s: Math.max(2, Math.round(sz * (.035 + r() * .03))), spin: (r() - .5) * 240});
           }
           reflTiles.push({x: cx, y: y + (r() - .5) * size * .6, size: sz, L: L, rot: r() * 360, dir: r() < .5 ? -1 : 1, alpha: alpha, t: .15 + r() * .72, bits: bits});
           html.push('<img src="img/joystick-' + (coral ? 'coral' : 'beige') + '.png" alt="" style="width:' + sz + 'px;opacity:' + alpha.toFixed(2) + '">');
@@ -967,23 +977,43 @@ footer.site .col>span{font-size:var(--step--1)}
   function paintReflect(){
     var box = band.getBoundingClientRect();
     if (box.bottom < -100 || box.top > window.innerHeight + 100) return;
-    var p = reflectProgress(box), off = reduce ? 0 : box.top + box.height / 2 - window.innerHeight / 2;
+    var p = Math.min(1.2, reflectProgress(box) + waited), off = reduce ? 0 : box.top + box.height / 2 - window.innerHeight / 2;
     reflTiles.forEach(function(k){
       var d = Math.min(1, Math.max(0, (p - k.t) / .16)), e = 1 - Math.pow(1 - d, 3);
       var x = k.x - k.size / 2, y = k.y - k.size / 2 + off * k.L.speed * .5;
       var hide = underList(box, x, y, k.size);
-      k.el.style.opacity = hide ? 0 : (k.alpha * Math.pow(1 - d, 1.6)).toFixed(3);
-      k.el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) rotate(' + (k.rot + off * k.L.turn * 3 * k.dir).toFixed(2) + 'deg) scale(' + (1 - d * .3).toFixed(3) + ')';
+      /* the drawing fades as fast as its specks break away, and the specks never outshine it */
+      var deg = k.rot + off * k.L.turn * 3 * k.dir, rad = deg * Math.PI / 180, cos = Math.cos(rad), sin = Math.sin(rad);
+      k.el.style.opacity = hide ? 0 : (k.alpha * Math.pow(1 - Math.min(1, d * 1.4), 1.2)).toFixed(3);
+      k.el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) rotate(' + deg.toFixed(2) + 'deg) scale(' + (1 - d * .12).toFixed(3) + ')';
       var cx = k.x, cy = k.y + off * k.L.speed * .5;
       k.bits.forEach(function(bt){
-        var a = d <= 0 || d >= 1 || hide ? 0 : Math.sin(Math.PI * Math.min(1, d * 1.15)) * Math.min(1, k.alpha * 3.2);
+        var a = d <= 0 || d >= 1 || hide ? 0 : Math.min(.7, k.alpha * 1.6) * Math.min(1, d * 8) * Math.pow(1 - e, 1.2);
+        var bx = bt.ox * cos - bt.oy * sin, by = bt.ox * sin + bt.oy * cos;
         bt.el.style.opacity = a.toFixed(3);
-        bt.el.style.transform = 'translate3d(' + (cx + bt.ox + bt.dx * e - bt.s / 2).toFixed(1) + 'px,' + (cy + bt.oy + bt.dy * e - bt.s / 2).toFixed(1) + 'px,0) rotate(' + (bt.spin * e).toFixed(1) + 'deg)';
+        bt.el.style.transform = 'translate3d(' + (cx + bx + bt.dx * e - bt.s / 2).toFixed(1) + 'px,' + (cy + by + bt.dy * e - bt.s / 2).toFixed(1) + 'px,0) rotate(' + (deg + bt.spin * e).toFixed(1) + 'deg)';
       });
     });
   }
+  /* waiting dissolves them too: after 20 s on the band without scrolling they slowly start to go,
+     and what is lost this way stays lost when scrolling back. Scrolling still adds on top, faster */
+  var waited = 0, lastScroll = performance.now(), lastTick = 0, bandSeen = false, waiting = false;
+  function wait(now){
+    if (!bandSeen) { lastTick = 0; waiting = false; return; }
+    if (now - lastScroll > 20000 && waited < 1.2) {
+      if (!waited) waited = .13;
+      else waited += Math.min(100, now - (lastTick || now)) / 22000;
+      paintReflect();
+    }
+    lastTick = now;
+    requestAnimationFrame(wait);
+  }
+  if (!reduce && 'IntersectionObserver' in window) new IntersectionObserver(function(entries){
+    bandSeen = entries[0].isIntersecting;
+    if (bandSeen && !waiting) { waiting = true; requestAnimationFrame(wait); }
+  }).observe(band);
   layReflect();
-  window.addEventListener('scroll', paintReflect, {passive: true});
+  window.addEventListener('scroll', function(){ lastScroll = performance.now(); paintReflect(); }, {passive: true});
   window.addEventListener('resize', function(){ clearTimeout(layReflect.t); layReflect.t = setTimeout(layReflect, 200); });
   setTimeout(layReflect, 600);
 
