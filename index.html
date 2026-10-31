@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Women in Swedish Gaming</title>
+<meta name="description" content="A critical data story about women's representation in the Swedish games industry, 2015 to 2025. Data and Society, Malmö University.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=Unbounded:wght@500;700&display=swap">
+<style>
+/* Layout: one reading column (66ch) with figures breaking wider; beige bands mark chapter openers. Single light theme on purpose, to match the white Flourish embeds. */
+:root{
+  color-scheme: light;
+  --paper:#FFFCF8;      /* page */
+  --band:#F3DECA;       /* palette beige, used for bands only */
+  --band-soft:#F9EEE3;
+  --ink:#2D4057;        /* palette navy: all text, and men */
+  --ink-2:#56637A;      /* secondary text, 5.9:1 on paper */
+  --women:#E4614D;      /* darkened palette coral, 3.4:1 on paper */
+  --men:#2D4057;
+  --teal:#2E7A8B;       /* text-safe teal, 4.8:1 */
+  --teal-bright:#4097AA;/* palette teal, decoration only */
+  --grey:#7E848E;
+  --line:#E7DCCF;
+  --font-display:"Unbounded", "Arial Black", system-ui, sans-serif;
+  --font-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-data:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --step--1:clamp(.82rem,.8rem + .1vw,.88rem);
+  --step-0:clamp(1.02rem,.98rem + .2vw,1.13rem);
+  --step-1:clamp(1.25rem,1.15rem + .5vw,1.5rem);
+  --step-2:clamp(1.6rem,1.35rem + 1.2vw,2.3rem);
+  --step-3:clamp(2.1rem,1.6rem + 2.6vw,3.9rem);
+  --gutter-l:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:var(--step-0);line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+img{max-width:100%}
+a{color:var(--teal);text-underline-offset:.18em;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--teal-bright);outline-offset:3px;border-radius:2px}
+h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.08;letter-spacing:-.01em;text-wrap:balance;margin:0}
+p{margin:0}
+.wrap{padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+.col{max-width:66ch;margin-inline:auto}
+.wide{max-width:1040px;margin-inline:auto}
+.flow{display:grid;gap:1.15em}
+.mono{font-family:var(--font-data);font-size:var(--step--1);letter-spacing:.02em}
+.eyebrow{font-family:var(--font-data);font-size:var(--step--1);text-transform:uppercase;letter-spacing:.12em;color:var(--ink-2)}
+.w{color:var(--women);font-weight:700}
+.m{color:var(--men);font-weight:700}
+cite{font-style:normal;color:var(--ink-2);font-size:.92em;white-space:nowrap}
+
+/* progress bar */
+.progress{position:fixed;inset:0 0 auto;z-index:20;padding-top:env(safe-area-inset-top,0px);pointer-events:none}
+.progress__bar{height:4px;background:linear-gradient(90deg,var(--women),var(--teal-bright));transform-origin:left;transform:scaleX(0)}
+.chapter-pill{position:fixed;z-index:20;top:calc(14px + env(safe-area-inset-top,0px));right:calc(14px + env(safe-area-inset-right,0px));font-family:var(--font-data);font-size:.78rem;background:var(--ink);color:var(--paper);padding:.35em .8em;border-radius:99px;opacity:0;transform:translateY(-6px);transition:opacity .3s,transform .3s}
+.chapter-pill.on{opacity:1;transform:none}
+
+/* hero */
+.hero{background:var(--band);padding-block:clamp(3.5rem,8vw,7rem) clamp(3rem,6vw,5rem);position:relative;overflow:hidden}
+.hero__grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(2rem,5vw,5rem);align-items:center}
+.hero h1{font-size:var(--step-3);margin-block:.6em .5em}
+.hero h1 .w{font-weight:700}
+.hero__lede{font-size:var(--step-1);line-height:1.45;max-width:30ch;color:var(--ink)}
+.byline{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;color:var(--ink-2)}
+.pixels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1rem,3vw,2rem)}
+.pix{display:grid;gap:.6rem}
+.pix__grid{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;aspect-ratio:1;max-width:100%}
+.pix__grid i{display:block;background:var(--ink);opacity:.12;border-radius:1px}
+.pix__grid i.on{background:var(--women);opacity:1}
+.pix__num{font-family:var(--font-display);font-size:var(--step-2);line-height:1;color:var(--women)}
+.pix__label{font-size:var(--step--1);line-height:1.35;color:var(--ink)}
+.pix__note{grid-column:1/-1;color:var(--ink-2)}
+.anim .pix__grid i.on{animation:pixel .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i) * 14ms + 250ms)}
+@keyframes pixel{from{background:var(--ink);opacity:.12;transform:scale(.6)}to{background:var(--women);opacity:1;transform:none}}
+
+/* question band */
+.question{padding-block:clamp(3rem,7vw,5.5rem)}
+.question__q{font-family:var(--font-display);font-weight:500;font-size:var(--step-2);line-height:1.22;text-wrap:balance;max-width:28ch}
+.question__q strong{font-weight:700;color:var(--women)}
+
+/* chapters */
+.chapter{padding-block:clamp(3.5rem,7vw,6rem) 0}
+.chapter__head{display:grid;gap:.9rem;margin-bottom:2rem}
+.chapter__head h2{font-size:var(--step-2);max-width:22ch}
+.chapter__num{font-family:var(--font-data);font-size:var(--step--1);color:var(--women);letter-spacing:.12em;text-transform:uppercase}
+
+/* figures */
+figure{margin:0}
+.fig{margin-block:clamp(2.2rem,5vw,3.2rem)}
+.fig__frame{background:#fff;border:1px solid var(--line);border-radius:6px;padding:clamp(.6rem,2vw,1.2rem);min-height:280px;position:relative}
+.fig__frame .flourish-embed{width:100%}
+.fig__frame noscript img{display:block;width:100%}
+.fig__cap{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.3rem 1rem;margin-top:.9rem;font-size:var(--step--1);color:var(--ink-2);line-height:1.5}
+.fig__cap b{font-family:var(--font-data);font-weight:500;color:var(--ink);white-space:nowrap}
+details.about{margin-top:.9rem;border-top:1px solid var(--line);font-size:var(--step--1)}
+details.about summary{cursor:pointer;padding:.7rem 0;font-family:var(--font-data);color:var(--teal);list-style:none;display:flex;align-items:center;gap:.5rem}
+details.about summary::-webkit-details-marker{display:none}
+details.about summary::before{content:"+";display:inline-grid;place-items:center;width:1.3em;height:1.3em;border:1px solid currentColor;border-radius:3px;font-size:.9em;line-height:1}
+details.about[open] summary::before{content:"\2212"}
+.about__cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 2rem;padding-bottom:1rem}
+.about__cols h4{margin:0 0 .4rem;font-family:var(--font-data);font-weight:500;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em}
+.about__cols ul{margin:0;padding-left:1.1em;display:grid;gap:.35rem;color:var(--ink)}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:1rem;margin-block:2.4rem}
+.stat{border-top:3px solid var(--ink);padding-top:.8rem;display:grid;gap:.3rem;align-content:start}
+.stat--w{border-top-color:var(--women)}
+.stat__n{font-family:var(--font-display);font-weight:700;font-size:var(--step-2);line-height:1;font-variant-numeric:tabular-nums}
+.stat--w .stat__n{color:var(--women)}
+.stat__l{font-size:var(--step--1);line-height:1.45;color:var(--ink-2)}
+
+/* quotes */
+.pull{margin:2.6rem 0;padding:0 0 0 1.4rem;border-left:4px solid var(--women)}
+.pull p{font-family:var(--font-display);font-weight:500;font-size:var(--step-1);line-height:1.35;text-wrap:balance}
+.pull footer{margin-top:.7rem;font-size:var(--step--1);color:var(--ink-2)}
+
+/* definition callout */
+.define{background:var(--band-soft);border:1px solid var(--line);border-radius:6px;padding:1.1rem 1.25rem;display:grid;gap:.4rem}
+.define .eyebrow{color:var(--teal)}
+
+/* counted grid */
+.counted{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-block:2rem}
+.counted__col{background:#fff;border:1px solid var(--line);border-radius:6px;padding:1.1rem;display:grid;gap:.8rem;align-content:start}
+.counted__col h3{font-size:1rem;line-height:1.25}
+.counted__col ul{margin:0;padding:0;list-style:none;display:grid;gap:.5rem}
+.counted__col li{display:flex;gap:.6rem;align-items:baseline;font-size:var(--step--1);line-height:1.4}
+.dot{flex:none;width:.7rem;height:.7rem;border-radius:2px;transform:translateY(.1rem)}
+.dot--yes{background:var(--ink)}
+.dot--once{background:transparent;border:2px solid var(--ink)}
+.dot--no{background:transparent;border:2px dashed var(--grey)}
+
+/* initiatives */
+.inits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-block:1.8rem}
+.init{padding:1rem 0;border-top:1px solid var(--ink);display:grid;gap:.35rem;align-content:start}
+.init h3{font-family:var(--font-body);font-size:1.02rem;font-weight:700;line-height:1.3}
+.init p{font-size:var(--step--1);color:var(--ink-2);line-height:1.5}
+
+/* reflection band */
+.reflect{background:var(--ink);color:var(--paper);margin-top:clamp(4rem,8vw,6rem);padding-block:clamp(3.5rem,8vw,6rem)}
+.reflect h2{font-size:var(--step-2);margin-bottom:1.5rem}
+.reflect .eyebrow{color:#F3DECA}
+.reflect a{color:#9ED3DF}
+.reflect .big{font-family:var(--font-display);font-weight:500;font-size:var(--step-1);line-height:1.4;color:#F3DECA}
+
+/* end matter */
+.end{padding-block:clamp(3rem,7vw,5rem)}
+.end h2{font-size:var(--step-1);margin-bottom:1rem}
+.end section+section{margin-top:3rem}
+.refs{margin:0;padding:0;list-style:none;display:grid;gap:.75rem;font-size:var(--step--1);line-height:1.5}
+.refs li{padding-left:1.6em;text-indent:-1.6em;overflow-wrap:anywhere}
+footer.site{border-top:1px solid var(--line);padding-block:2rem calc(2rem + env(safe-area-inset-bottom,0px));color:var(--ink-2);font-size:var(--step--1)}
+footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem 2rem}
+
+/* reveal (only applied by JS to content below the first screen) */
+.js .reveal.pending{opacity:0;transform:translateY(18px)}
+.reveal{transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+
+@media (max-width:820px){
+  .hero__grid{grid-template-columns:minmax(0,1fr)}
+  .counted,.inits{grid-template-columns:minmax(0,1fr)}
+  .about__cols{grid-template-columns:minmax(0,1fr)}
+  .chapter-pill{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .anim .pix__grid i.on{animation:none}
+  .reveal{transition:none}
+  .js .reveal.pending{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"><div class="progress__bar" id="progressBar"></div></div>
+<div class="chapter-pill" id="chapterPill" aria-hidden="true"></div>
+
+<!-- HERO -->
+<header class="hero wrap" id="top">
+  <div class="wide hero__grid">
+    <div>
+      <p class="eyebrow">A critical data story · Sweden, 2015 to 2025</p>
+      <h1>Half of those who play. <span class="w">Less than a quarter</span> of those who make.</h1>
+      <p class="hero__lede">Women in the Swedish gaming industry, and what the numbers can and cannot tell us about gender equality.</p>
+      <p class="byline mono"><span>Lucília Costa Oliveira, Mariia Lieshukova, Martin Politic</span><span>Data and Society, Malmö University</span><span>5 November 2026</span></p>
+    </div>
+    <div class="pixels" role="img" aria-label="Two grids of 100 squares. Players aged 16 and over in Sweden: 52 of 100 are women. Employees in the Swedish games industry: 24 of 100 are women.">
+      <div class="pix">
+        <div class="pix__grid" data-on="52"></div>
+        <span class="pix__num">52%</span>
+        <span class="pix__label">of players aged 16+ in Sweden are women</span>
+      </div>
+      <div class="pix">
+        <div class="pix__grid" data-on="24"></div>
+        <span class="pix__num">23.5%</span>
+        <span class="pix__label">of employees in Swedish games companies are women</span>
+      </div>
+      <p class="pix__note mono">1 square = 1%. Players: 2025 survey. Employees: 2024. Source: Swedish Games Industry (2025, pp. 22, 45).</p>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- INTRO -->
+<section class="wrap question" aria-label="Introduction">
+  <div class="col flow">
+    <p class="reveal">"The digital gaming industry has positioned itself as a poster child of the cultural and creative industries" <cite>(Szczepanska, 2023, p. 843)</cite>. Video games combine technical skills with digital art, entertainment and different forms of media, in an industry focused on innovation, entrepreneurship and, as Szczepanska puts it, a "meritocratic work ethic" <cite>(p. 843)</cite>.</p>
+    <p class="reveal">The industry has grown from a niche sector into a global mass market <cite>(Chaminade et al., 2021, p. 132)</cite>, and video games have become "the central platform for everyday communication, extending regional to global social and economic relationships" <cite>(Mortensen et al., 2018, p. 64)</cite>. Sweden is an interesting case: since the late 1990s its games industry has grown through titles such as Minecraft and Candy Crush, and through regional hubs like Malmö <cite>(Chaminade et al., 2021, pp. 132, 135-136)</cite>.</p>
+    <p class="reveal">Yet despite Sweden's reputation as one of the world's most gender-equal countries, inequalities persist in its games industry <cite>(Szczepanska, 2023, pp. 843-846)</cite>. So we asked:</p>
+    <p class="question__q reveal">How has women's representation in the Swedish video game industry changed between 2015 and 2025, and <strong>what does data reveal</strong> about progress towards gender equality?</p>
+  </div>
+</section>
+
+<!-- 01 CULTURE -->
+<section class="chapter wrap" id="culture" data-chapter="Women in culture">
+  <div class="col">
+    <div class="chapter__head reveal">
+      <p class="chapter__num">Chapter 1</p>
+      <h2>Women in culture: what do the numbers tell us?</h2>
+    </div>
+    <div class="flow">
+      <blockquote class="pull reveal">
+        <p>"The gaming industry isn't a separate satellite", but a "microcosm that's fed by wider culture".</p>
+        <footer>Siobhan Reddy, studio director at Media Molecule, in <cite>Judge (2019)</cite></footer>
+      </blockquote>
+      <p class="reveal">The culture we create, and are a part of, reflects the society we live in. From the films we watch and the music we listen to, to the games we play, culture shapes how we see the world. But who gets to work in the industries that produce it?</p>
+      <p class="reveal">We start in 2015, the year after GamerGate, an online movement that in 2014 brought sexism and the treatment of women in gaming into wider public discussion. The debate also reached Sweden, where several game companies spoke out against the harassment and supported initiatives to make the industry more diverse <cite>(Qvist, 2014)</cite>.</p>
+      <p class="reveal">Across Sweden's cultural sector, the gap between men and women working full-time has narrowed. In 2015, 76.1% of <span class="m">men</span> in cultural employment worked full-time, against 65.4% of <span class="w">women</span>. By 2025, the gap had shrunk from 10.7 to 3.0 percentage points <cite>(Eurostat)</cite>.</p>
+    </div>
+  </div>
+
+  <figure class="fig wide reveal" aria-labelledby="cap1">
+    <div class="fig__frame">
+      <div class="flourish-embed flourish-chart" data-src="visualisation/30601848"><noscript><img src="https://public.flourish.studio/visualisation/30601848/thumbnail" width="100%" alt="Chart: share of employed women and men in Sweden's cultural sector working full-time, 2015 to 2025."></noscript></div>
+    </div>
+    <figcaption class="fig__cap" id="cap1"><b>Fig. 1</b><span>Full-time employment in Sweden's cultural sector by sex, 2015 to 2025. Source: Eurostat, cultural employment (EU Labour Force Survey).</span></figcaption>
+    <details class="about">
+      <summary>About this data</summary>
+      <div class="about__cols">
+        <div><h4>What it shows well</h4><ul>
+          <li>Comparable over time, from an established source (EU-LFS).</li>
+          <li>A broad definition of cultural employment, including non-cultural roles in cultural organisations.</li>
+          <li>Can be broken down by sex.</li>
+        </ul></div>
+        <div><h4>What it hides</h4><ul>
+          <li>Eurostat's codes decide what counts as culture, so some activities fall outside.</li>
+          <li>Only the main job counts, so freelance work is often invisible.</li>
+          <li>Video games are mixed in with very different industries.</li>
+          <li>Anyone who worked one paid hour in the reference week counts as employed.</li>
+        </ul></div>
+      </div>
+    </details>
+  </figure>
+
+  <div class="col flow">
+    <p class="reveal">But what can these numbers really tell us about gender equality? Eurostat's broad definition gives a comprehensive picture of the sector, but it can hide differences between industries. And a smaller gap in full-time work tells us nothing about equal pay, job security or opportunities.</p>
+    <p class="reveal">To understand what gender equality looks like in one creative industry, we need to look closer. So what happens when we zoom in on Swedish video games?</p>
+  </div>
+</section>
+
+<!-- 02 PLAYERS -->
+<section class="chapter wrap" id="players" data-chapter="Who plays">
+  <div class="col">
+    <div class="chapter__head reveal">
+      <p class="chapter__num">Chapter 2</p>
+      <h2>Who plays the games?</h2>
+    </div>
+    <div class="flow">
+      <blockquote class="pull reveal">
+        <p>"In order to attract more women to the industry, more girls must be allowed to keep their interest in video games and the joy of gaming when they grow up."</p>
+        <footer>Swedish Games Industry, the trade organisation behind the Game Developer Index <cite>(2020, p. 15)</cite></footer>
+      </blockquote>
+      <p class="reveal">The statement draws a direct line between who plays games today and who will make them tomorrow. So who actually plays?</p>
+      <p class="reveal">At first glance, the answer challenges the idea of gaming as a "boys' thing". According to the industry's latest report, 52% of players aged 16 and over in Sweden are <span class="w">women</span>, 48% are <span class="m">men</span>, and less than 1% selected non-binary or preferred not to say <cite>(Swedish Games Industry, 2025, p. 45)</cite>. Across Europe, 45% of players are women <cite>(Video Games Europe, 2025a, p. 9)</cite>. Yet women make up only 23.5% of the people employed in the Swedish games industry <cite>(Swedish Games Industry, 2025, p. 22)</cite>.</p>
+    </div>
+  </div>
+
+  <figure class="fig wide reveal" aria-labelledby="cap2">
+    <div class="fig__frame">
+      <div class="flourish-embed flourish-chart" data-src="visualisation/30633006"><noscript><img src="https://public.flourish.studio/visualisation/30633006/thumbnail" width="100%" alt="Chart: women are 52% of players aged 16 and over in Sweden, but 23.5% of employees in the Swedish games industry."></noscript></div>
+    </div>
+    <figcaption class="fig__cap" id="cap2"><b>Fig. 2</b><span>Share of women and men among players aged 16+ (2025) and employees (2024) in Sweden. Source: Swedish Games Industry (2025, pp. 22, 45).</span></figcaption>
+    <details class="about">
+      <summary>About this data</summary>
+      <div class="about__cols">
+        <div><h4>What it shows well</h4><ul>
+          <li>Both numbers come from the same report, so they are easy to trace.</li>
+          <li>The player figure is based on 1,016 respondents in Sweden.</li>
+          <li>The player survey offered an option beyond women and men.</li>
+        </ul></div>
+        <div><h4>What it hides</h4><ul>
+          <li>A survey (players, 2025) is compared with company accounts (employees, 2024).</li>
+          <li>"Player" means anyone who plays one hour a week, on any device.</li>
+          <li>The survey was run for industry trade associations.</li>
+          <li>Gender reporting is not mandatory for small companies; freelancers are not counted.</li>
+        </ul></div>
+      </div>
+    </details>
+  </figure>
+
+  <div class="col flow">
+    <div class="define reveal">
+      <p class="eyebrow">Who counts as a player?</p>
+      <p>Anyone who plays at least <strong>one hour per week</strong>, on any device. In Sweden, the most played genre is puzzle games.</p>
+    </div>
+    <p class="reveal">The Swedish figure comes from Power of Play 2025, a survey of more than 24,000 players in 21 countries, 1,016 of them in Sweden <cite>(Swedish Games Industry, 2025, p. 45)</cite>. It was carried out by the research firm AudienceNet and released by games industry trade associations, among them Video Games Europe <cite>(Video Games Europe, 2025b)</cite>. By this definition, someone solving a mobile puzzle on the bus and someone playing console games every evening fall into the same category. The near equal balance among players is partly a product of how wide the category is drawn.</p>
+    <p class="reveal">Public data on young people tells a different story. The Swedish Media Authority reports that boys "still play considerably more than girls" <cite>(Mediemyndigheten, 2025, our translation)</cite>. Among those who play more than three hours on a typical day, the gap is clear in every age group: 38% of <span class="m">boys</span> against 18% of <span class="w">girls</span> aged 9 to 12 and 13 to 16, and 38% against 13% among 17 to 18 year olds <cite>(Mediemyndigheten, 2025, p. 66)</cite>.</p>
+  </div>
+
+  <figure class="fig wide reveal" aria-labelledby="cap3">
+    <div class="fig__frame">
+      <div class="flourish-embed flourish-chart" data-src="visualisation/30684834"><noscript><img src="https://public.flourish.studio/visualisation/30684834/thumbnail" width="100%" alt="Chart: share of boys and girls who play digital games more than 3 hours on a typical day, by age group, 2022 and 2024."></noscript></div>
+    </div>
+    <figcaption class="fig__cap" id="cap3"><b>Fig. 3</b><span>Share who play digital games more than 3 hours on a typical day, by age group, 2022 and 2024. All devices. Source: Mediemyndigheten (2025, Table 12 e, p. 66).</span></figcaption>
+    <details class="about">
+      <summary>About this data</summary>
+      <div class="about__cols">
+        <div><h4>What it shows well</h4><ul>
+          <li>A public survey, sampled and collected by Statistics Sweden.</li>
+          <li>Random sample from the population register, weighted for non-response.</li>
+          <li>The same question in 2022 and 2024, covering all devices.</li>
+        </ul></div>
+        <div><h4>What it hides</h4><ul>
+          <li>Only about one in four invited children answered.</li>
+          <li>Only boys and girls; no other option.</li>
+          <li>The 3-hour threshold measures intensity, not interest, and time is self-reported.</li>
+          <li>Nothing here follows children into jobs.</li>
+        </ul></div>
+      </div>
+    </details>
+  </figure>
+
+  <div class="col flow">
+    <p class="reveal">These figures also say something about who does the counting. The headline number on players comes from trade associations, which have an interest in presenting games as mainstream culture for everyone. The public figures rely on a survey where roughly one in four invited children responded. Both sort people into binary categories. As Desrosières <cite>(2015)</cite> argues, quantification starts with agreeing on conventions and only then measuring; here, the convention of what counts as "playing", one hour a week or three hours a day, shapes the result.</p>
+    <p class="question__q reveal">So if women make up around half of those who play, <strong>why are they still less than a quarter</strong> of those who make the games?</p>
+  </div>
+</section>
+
+<!-- 03 MAKERS -->
+<section class="chapter wrap" id="makers" data-chapter="Who makes">
+  <div class="col">
+    <div class="chapter__head reveal">
+      <p class="chapter__num">Chapter 3</p>
+      <h2>Who makes the games?</h2>
+    </div>
+    <div class="flow">
+      <p class="reveal">To look at employment, we used two occupational categories from Statistics Sweden (SCB): 2173, game and digital media designers, and 2513, game and digital media developers. They cover roles in game graphics, design and programming, and the Game Developer Index uses them too <cite>(Swedish Games Industry, 2025)</cite>.</p>
+      <p class="reveal">They do not cover everyone in the industry. Some game developers fall under other codes, and some designers in these codes work in film or web design. The numbers are an indication of employment in game-related occupations, not a complete count.</p>
+    </div>
+    <div class="stats">
+      <div class="stat reveal"><span class="stat__n" data-count="7081">7,081</span><span class="stat__l">men in these occupations in 2024, up from 3,479 in 2015</span></div>
+      <div class="stat stat--w reveal"><span class="stat__n" data-count="2252">2,252</span><span class="stat__l">women in 2024, up from 795 in 2015: almost three times as many</span></div>
+      <div class="stat reveal"><span class="stat__n">24%</span><span class="stat__l">women's share in 2024, up from 19% in 2015 (our calculation)</span></div>
+    </div>
+  </div>
+
+  <figure class="fig wide reveal" aria-labelledby="cap4">
+    <div class="fig__frame">
+      <div class="flourish-embed flourish-chart" data-src="visualisation/30678209"><noscript><img src="https://public.flourish.studio/visualisation/30678209/thumbnail" width="100%" alt="Chart: number of men and women employed in game and digital media occupations in Sweden, 2015 to 2024."></noscript></div>
+    </div>
+    <figcaption class="fig__cap" id="cap4"><b>Fig. 4</b><span>Men and women employed in game and digital media occupations (SSYK 2173 and 2513), Sweden, 2015 to 2024. Source: Statistics Sweden (SCB). Note: methodological changes in 2022 and 2023, including a new age range (16 to 64 became 16 to 69) and statistical estimation of some occupations, affect comparability.</span></figcaption>
+  </figure>
+
+  <div class="col flow">
+    <p class="reveal">The numbers show progress, but not a fundamental shift in the gender balance. As the industry grew <cite>(Chaminade et al., 2021, p. 132)</cite>, employment rose for both men and women. Growth alone did not remove the imbalance, which complicates the idea that a bigger industry automatically means better representation.</p>
+    <p class="reveal">But representation is only one part of the picture. What about pay?</p>
+  </div>
+</section>
+
+<!-- 04 PAY -->
+<section class="chapter wrap" id="pay" data-chapter="Pay">
+  <div class="col">
+    <div class="chapter__head reveal">
+      <p class="chapter__num">Chapter 4</p>
+      <h2>What about pay?</h2>
+    </div>
+    <div class="stats">
+      <div class="stat reveal"><span class="stat__n">4,800 SEK</span><span class="stat__l">monthly gap between men and women developers in 2025 (56,400 vs 51,600)</span></div>
+      <div class="stat stat--w reveal"><span class="stat__n">9,200 SEK</span><span class="stat__l">monthly gap between men and women designers in 2025 (51,900 vs 42,700)</span></div>
+    </div>
+    <p class="reveal">Among game and digital media developers, men earned more than women in most years. The gap was not constant: it narrowed around 2019 and 2020, but remained visible in 2024 and 2025.</p>
+  </div>
+
+  <figure class="fig wide reveal" aria-labelledby="cap5">
+    <div class="fig__frame">
+      <div class="flourish-embed flourish-chart" data-src="visualisation/30678185"><noscript><img src="https://public.flourish.studio/visualisation/30678185/thumbnail" width="100%" alt="Chart: average monthly salary of men and women game and digital media developers, 2015 to 2025."></noscript></div>
+    </div>
+    <figcaption class="fig__cap" id="cap5"><b>Fig. 5</b><span>Game and digital media developers (SSYK 2513): average monthly salary in SEK, 2015 to 2025. Source: Statistics Sweden (SCB).</span></figcaption>
+  </figure>
+
+  <div class="col flow">
+    <p class="reveal">The picture is less consistent among designers. In some years, women's average salary was close to or even higher than men's, while in 2025 the difference was much larger. Data on men's salaries is missing for 2021 and 2022, so those years cannot show a continuous trend.</p>
+  </div>
+
+  <figure class="fig wide reveal" aria-labelledby="cap6">
+    <div class="fig__frame">
+      <div class="flourish-embed flourish-chart" data-src="visualisation/30678079"><noscript><img src="https://public.flourish.studio/visualisation/30678079/thumbnail" width="100%" alt="Chart: average monthly salary of men and women game and digital media designers, 2015 to 2025, with men's data missing for 2021 and 2022."></noscript></div>
+    </div>
+    <figcaption class="fig__cap" id="cap6"><b>Fig. 6</b><span>Game and digital media designers (SSYK 2173): average monthly salary in SEK, 2015 to 2025. Source: Statistics Sweden (SCB). Note: data for men is missing for 2021 and 2022 because the values were unavailable, too uncertain or withheld for confidentiality.</span></figcaption>
+  </figure>
+
+  <div class="col flow">
+    <p class="reveal">To us, no data is still data, and the gaps matter. The salary figures also cannot tell us whether men and women have the same roles, seniority, contracts or opportunities.</p>
+    <p class="reveal">So the numbers show that more women are entering the industry and that differences in pay remain. They cannot tell us why. Research on the Swedish games industry points to one possible explanation: although the industry presents itself as meritocratic, recruitment often relies on informal networks.</p>
+    <blockquote class="pull reveal">
+      <p>"Informal recruitment strategies and the formulation of merits may privilege men."</p>
+      <footer>Anna Szczepanska <cite>(2023, p. 857)</cite>, who also shows how the industry's idea of "passion" can become "conflated with merit" <cite>(pp. 843, 855-857)</cite></footer>
+    </blockquote>
+    <p class="reveal">Her research does not prove that these mechanisms explain our data. But it shows what the numbers alone cannot capture: the experiences, recruitment practices and working conditions behind them. If games reflect the culture around us, it matters not only who makes them, but who gets the opportunity to.</p>
+  </div>
+</section>
+
+<!-- 05 THE INDEX -->
+<section class="chapter wrap" id="index" data-chapter="The Index">
+  <div class="col">
+    <div class="chapter__head reveal">
+      <p class="chapter__num">Chapter 5</p>
+      <h2>Behind the Game Developer Index</h2>
+    </div>
+    <div class="flow">
+      <p class="reveal">Understanding gender representation also means looking at how the industry measures its own progress. The Game Developer Index gives good insight into the industry's development, but what does it actually tell us about gender equality?</p>
+      <p class="reveal">In 2014, the Index counted 516 women, 17% of the reported workforce. By 2024 it counted 2,150 women, or 23.5% <cite>(Swedish Games Industry, 2020, 2025)</cite>. Women's representation has increased, but growth in the number of women employed is not the same as growth in their share of the workforce.</p>
+    </div>
+  </div>
+
+  <figure class="fig wide reveal" aria-labelledby="cap7">
+    <div class="fig__frame">
+      <div class="flourish-embed flourish-chart" data-src="visualisation/30655985"><noscript><img src="https://public.flourish.studio/visualisation/30655985/thumbnail" width="100%" alt="Chart: women and men employed in Swedish games companies according to the Game Developer Index, 2014 to 2024."></noscript></div>
+    </div>
+    <figcaption class="fig__cap" id="cap7"><b>Fig. 7</b><span>Employees in Swedish games companies by gender, 2014 to 2024. Source: Swedish Games Industry, Game Developer Index 2015 to 2025. Note: up to 2019, the figures include staff at Swedish-owned companies abroad; from 2020 they cover Sweden only, which explains the drop in 2020.</span></figcaption>
+  </figure>
+
+  <div class="col flow">
+    <p class="reveal">The industry has argued that more girls need to stay interested in games as they grow up <cite>(Swedish Games Industry, 2020, p. 16)</cite>. Yet its own 2025 report shows women are already 52% of players and only 23.5% of the workforce <cite>(2025, pp. 22, 45)</cite>. If women already make up half of all players, can a lack of interest really explain why so few work in the industry?</p>
+    <p class="reveal">The reports also describe initiatives aimed at women's participation <cite>(Swedish Games Industry, 2020, p. 16; 2024, p. 24)</cite>:</p>
+    <div class="inits">
+      <div class="init reveal"><h3>Games by Her</h3><p>A course for women and non-binary people who want to learn about the industry.</p></div>
+      <div class="init reveal"><h3>Leveling the Playing Field</h3><p>Coffee Stain's initiative supporting smaller studios that employ at least as many women as men.</p></div>
+      <div class="init reveal"><h3>King and Swedish Games Industry mentorship</h3><p>Mentoring, events and networking for women and non-binary participants.</p></div>
+    </div>
+    <p class="reveal">Their existence shows efforts to address the imbalance. It does not show whether they have increased women's employment or improved their chances to progress.</p>
+    <p class="reveal">Gaps in public information also affect the data. Many small, medium-sized and even large companies do not publish employee information in their annual reports or on their websites <cite>(Swedish Games Industry, 2021, p. 16)</cite>, and freelancers and subcontractors may be missing from the counts <cite>(Swedish Games Industry, 2020, p. 10)</cite>. Earlier figures also change between reports: the 2019 Index counted 1,699 women for 2018, while the 2021 Index gave 1,036 for the same year.</p>
+    <p class="reveal">Finally, it matters who produces these numbers. The Index is published by a trade association that represents the sector and is partly funded through membership fees. That does not make the data unreliable, but its reports aim first of all to show the sector's development, so the numbers reflect how the industry chooses to measure and present itself.</p>
+  </div>
+</section>
+
+<!-- 06 WHAT GETS COUNTED -->
+<section class="chapter wrap" id="counted" data-chapter="What gets counted">
+  <div class="wide">
+    <div class="col">
+      <div class="chapter__head reveal">
+        <p class="chapter__num">Chapter 6</p>
+        <h2>What gets counted, and what doesn't</h2>
+      </div>
+      <p class="reveal">Across all our sources, some things are measured every year, some only once, and some never. What gets counted shapes what we can know.</p>
+    </div>
+    <div class="counted">
+      <div class="counted__col reveal">
+        <h3>Counted every year</h3>
+        <ul>
+          <li><span class="dot dot--yes" aria-hidden="true"></span>Women and men employed in games companies</li>
+          <li><span class="dot dot--yes" aria-hidden="true"></span>Women and men in game occupations (SCB)</li>
+          <li><span class="dot dot--yes" aria-hidden="true"></span>Average salaries by sex (SCB), with gaps</li>
+        </ul>
+      </div>
+      <div class="counted__col reveal">
+        <h3>Counted now and then</h3>
+        <ul>
+          <li><span class="dot dot--once" aria-hidden="true"></span>Players' gender in Sweden (2025 only)</li>
+          <li><span class="dot dot--once" aria-hidden="true"></span>Teen gaming time by gender (every two years, changing measures)</li>
+          <li><span class="dot dot--once" aria-hidden="true"></span>Non-binary or other gender (sometimes, under 1 to 2%)</li>
+        </ul>
+      </div>
+      <div class="counted__col reveal">
+        <h3>Not counted</h3>
+        <ul>
+          <li><span class="dot dot--no" aria-hidden="true"></span>Women in leadership positions</li>
+          <li><span class="dot dot--no" aria-hidden="true"></span>Freelancers, consultants and subcontractors</li>
+          <li><span class="dot dot--no" aria-hidden="true"></span>Workplace culture, harassment and who leaves</li>
+          <li><span class="dot dot--no" aria-hidden="true"></span>Why the differences exist</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col flow">
+      <p class="reveal">So while the reports and our other sources offer valuable insight into employment and growth, they are not designed to assess gender equality or the experiences of the people working in the industry. Whose perspectives are represented in these statistics, and whose are left out? We don't know. That is why understanding gender equality means looking not only at what the numbers show, but at who produces them, what they are designed to measure, and what falls outside their scope.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section class="reflect wrap" id="reflection" data-chapter="Reflection">
+  <div class="col flow">
+    <p class="eyebrow">Critical reflection</p>
+    <h2>If the data suddenly disappeared</h2>
+    <p class="big reveal">"If the data in your case suddenly disappeared, how would people in this cultural sector make decisions differently?"</p>
+    <p class="reveal">Without data, the gender inequality in the sector would be harder to identify, and companies and policymakers would have less evidence to see the disparities and judge whether their initiatives make a difference.</p>
+    <p class="reveal">But our research also showed that having data does not automatically lead to change. Numbers make inequalities visible, yet they are shaped by how information is collected, what is measured and what is left out. We found missing values, methodological changes and other limitations that made us question how complete the picture is. Data is not simply a reflection of reality; it is also a way of choosing which parts of reality become visible.</p>
+    <p class="reveal">Data is essential for identifying and fighting inequality, but it should never be seen as the whole story. Numbers can show us where inequalities exist. It is up to people to understand why they exist, and to take responsibility for changing them.</p>
+  </div>
+</section>
+
+<!-- END MATTER -->
+<div class="end wrap">
+  <div class="col">
+    <section aria-labelledby="design-h">
+      <h2 id="design-h">Design choices</h2>
+      <div class="flow">
+        <p>Our design choices were guided by Kirk's <cite>(2019)</cite> principles that good data visualisation should be trustworthy, accessible and elegant. The charts are built in Flourish, so readers can hover over values and explore the data, and we kept to familiar chart types: bars for comparisons, lines for change over time.</p>
+        <p>The same colour always represents the same group: coral for women and girls, navy for men and boys. Aware that pink and blue reproduce gender stereotypes <cite>(Muth, 2018)</cite>, we avoided pastel tones, while acknowledging that a warm and cool pairing still echoes this convention. We checked colours against WCAG 2.2, which requires a contrast ratio of at least 3:1 for graphical elements and 4.5:1 for text, and never uses colour as the only way of conveying information <cite>(W3C, 2024)</cite>. Following Lupi's <cite>(2017)</cite> call to "sneak context in", every chart shows its source and notes on definitions and methodological breaks, and "About this data" opens the strengths and limits of each dataset.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="refs-h">
+      <h2 id="refs-h">References</h2>
+      <ul class="refs">
+        <li>Chaminade, C., Martin, R., &amp; McKeever, J. (2021). When regional meets global: Exploring the nature of global innovation networks in the video game industry in Southern Sweden. <i>Entrepreneurship &amp; Regional Development, 33</i>(1-2), 131-146. <a href="https://doi.org/10.1080/08985626.2020.1736184">https://doi.org/10.1080/08985626.2020.1736184</a></li>
+        <li>Desrosières, A. (2015). Retroaction: How indicators feed back onto quantified actors. In R. Rottenburg, S. E. Merry, S.-J. Park, &amp; J. Mugler (Eds.), <i>The world of indicators: The making of governmental knowledge through quantification</i> (pp. 329-353). Cambridge University Press.</li>
+        <li>Eurostat. (n.d.). <i>Cultural employment by sex</i> [Data set]. European Commission.</li>
+        <li>Internetstiftelsen. (2017). <i>Svenskarna och internet 2017: Spel, sex och dejting</i>. <a href="https://svenskarnaochinternet.se/rapporter/svenskarna-och-internet-2017/spel-sex-och-dejting/">https://svenskarnaochinternet.se/rapporter/svenskarna-och-internet-2017/spel-sex-och-dejting/</a></li>
+        <li>Judge, A. (2019, October 14). LittleBigPlanet creator on championing women in the games industry post Gamergate. <i>The Guardian</i>. <a href="https://www.theguardian.com/careers/2019/oct/14/littlebigplanet-creator-on-championing-women-in-the-games-industry-post-gamergate">https://www.theguardian.com/careers/2019/oct/14/littlebigplanet-creator-on-championing-women-in-the-games-industry-post-gamergate</a></li>
+        <li>Kirk, A. (2019). <i>Data visualisation: A handbook for data driven design</i> (2nd ed.). SAGE Publications.</li>
+        <li>Lupi, G. (2017). <i>Data humanism: The revolution will be visualized</i>. Print. <a href="https://giorgialupi.com/data-humanism-my-manifesto-for-a-new-data-wold">https://giorgialupi.com/data-humanism-my-manifesto-for-a-new-data-wold</a></li>
+        <li>Mediemyndigheten. (2025). <i>Ungar &amp; medier 2025</i>. <a href="https://mediemyndigheten.se/globalassets/rapporter-och-analyser/ungar--medier/mediemyndigheten-rapport-ungar-och-medier.pdf">https://mediemyndigheten.se/globalassets/rapporter-och-analyser/ungar--medier/mediemyndigheten-rapport-ungar-och-medier.pdf</a></li>
+        <li>Mortensen, T., Witkowski, E., &amp; Toft-Nielsen, C. (2018). Introduction to special issue: Media-ludic approaches: Critical reflections on games and research practice. <i>MedieKultur: Journal of Media and Communication Research, 34</i>(64), 1-9. <a href="https://doi.org/10.7146/mediekultur.v34i64.105913">https://doi.org/10.7146/mediekultur.v34i64.105913</a></li>
+        <li>Muth, L. C. (2018, July 10). <i>An alternative to pink &amp; blue: Colors for gender data</i>. Datawrapper. <a href="https://www.datawrapper.de/blog/gendercolor">https://www.datawrapper.de/blog/gendercolor</a></li>
+        <li>Qvist, B. (2014, December 18). Gamergate: Swedish gaming companies tackle sexism in video games. <i>The Guardian</i>. <a href="https://www.theguardian.com/sustainable-business/2014/dec/19/gamergate-swedish-gaming-companies-tackle-sexism-in-video-games">https://www.theguardian.com/sustainable-business/2014/dec/19/gamergate-swedish-gaming-companies-tackle-sexism-in-video-games</a></li>
+        <li>Statistics Sweden (SCB). (n.d.). <i>Employees by occupation (SSYK 2012) and sex; average monthly salary by occupation and sex</i> [Data sets]. Statistikdatabasen.</li>
+        <li>Swedish Games Industry. (2020, December). <i>Game developer index 2020</i> (2nd ed.). <a href="https://www.dataspelsbranschen.se/rapporter/swedish-games-industry-2020-game-developer-index/">https://www.dataspelsbranschen.se/rapporter/swedish-games-industry-2020-game-developer-index/</a></li>
+        <li>Swedish Games Industry. (2021). <i>Game developer index 2021</i>. <a href="https://www.dataspelsbranschen.se/rapporter/swedish-games-industry-2021-game-developer-index/">https://www.dataspelsbranschen.se/rapporter/swedish-games-industry-2021-game-developer-index/</a></li>
+        <li>Swedish Games Industry. (2024). <i>Game developer index 2024</i>. <a href="https://www.dataspelsbranschen.se/rapporter/swedish-games-industry-2024-game-developer-index/">https://www.dataspelsbranschen.se/rapporter/swedish-games-industry-2024-game-developer-index/</a></li>
+        <li>Swedish Games Industry. (2025). <i>Game developer index 2025</i>. <a href="https://www.dataspelsbranschen.se/wp-content/uploads/2026/01/Game-Developer-Index-2025-ENG-WEB.pdf">https://www.dataspelsbranschen.se/wp-content/uploads/2026/01/Game-Developer-Index-2025-ENG-WEB.pdf</a></li>
+        <li>Szczepanska, A. M. (2023). Women's inclusion and neoliberal governmentality in the Swedish digital game industry: An analysis of discursive positions and recruitment strategies. <i>Gender, Work &amp; Organization, 30</i>(3), 842-861. <a href="https://doi.org/10.1111/gwao.12923">https://doi.org/10.1111/gwao.12923</a></li>
+        <li>Video Games Europe. (2025a). <i>All about video games: European key facts 2024</i>. <a href="https://vge.project-n.com/payload-api/media/file/VGE-2024-Key-Facts-Report_102025-1.pdf">https://vge.project-n.com/payload-api/media/file/VGE-2024-Key-Facts-Report_102025-1.pdf</a></li>
+        <li>Video Games Europe. (2025b, October 8). <i>Global report: Video games transcend entertainment and affect positive change in players' lives</i>. <a href="https://videogameseurope.eu/news/global-report-video-games-transcend-entertainment-and-affect-positive-change-in-players-lives/">https://videogameseurope.eu/news/global-report-video-games-transcend-entertainment-and-affect-positive-change-in-players-lives/</a></li>
+        <li>W3C. (2024). <i>Web content accessibility guidelines (WCAG) 2.2</i>. <a href="https://www.w3.org/TR/WCAG22/">https://www.w3.org/TR/WCAG22/</a></li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+</main>
+
+<footer class="site wrap">
+  <div class="wide">
+    <span>Critical Data Story · Women in the Swedish Gaming Industry</span>
+    <span>Lucília Costa Oliveira, Mariia Lieshukova, Martin Politic · Data and Society, Malmö University, 2026</span>
+  </div>
+</footer>
+
+<script src="https://public.flourish.studio/resources/embed.js"></script>
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('js');
+
+  /* hero pixel grids: final state is rendered first, then animated in */
+  document.querySelectorAll('.pix__grid').forEach(function(grid){
+    var on = parseInt(grid.getAttribute('data-on'), 10) || 0;
+    /* cells fill from the bottom-left, row by row, like a progress meter */
+    var cells = [];
+    for (var j = 0; j < 100; j++) cells.push('<i></i>');
+    grid.innerHTML = cells.join('');
+    var items = grid.children;
+    for (var k = 0; k < on; k++) {
+      var r = 9 - Math.floor(k / 10), c = k % 10;
+      var el = items[r * 10 + c];
+      el.className = 'on';
+      el.style.setProperty('--i', k);
+    }
+  });
+  if (!reduce) document.querySelector('.hero').classList.add('anim');
+
+  /* reveal on scroll: only content below the first screen starts pending */
+  var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  if (!reduce && 'IntersectionObserver' in window) {
+    var vh = window.innerHeight || 800;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.remove('pending'); io.unobserve(e.target); countUp(e.target); }
+      });
+    }, {rootMargin: '0px 0px -8% 0px', threshold: 0.05});
+    reveals.forEach(function(el){
+      if (el.getBoundingClientRect().top > vh * 0.95) { el.classList.add('pending'); io.observe(el); }
+    });
+    /* safety: never leave content hidden */
+    setTimeout(function(){ reveals.forEach(function(el){ if (el.getBoundingClientRect().top < (window.innerHeight||800)) el.classList.remove('pending'); }); }, 2500);
+  }
+
+  /* count-up for headline numbers when they scroll in */
+  function countUp(scope){
+    if (reduce) return;
+    var nodes = scope.matches && scope.matches('[data-count]') ? [scope] : scope.querySelectorAll ? scope.querySelectorAll('[data-count]') : [];
+    Array.prototype.forEach.call(nodes, function(n){
+      var target = parseInt(n.getAttribute('data-count'), 10), start = null, dur = 1100;
+      function step(t){
+        if (!start) start = t;
+        var p = Math.min(1, (t - start) / dur), eased = 1 - Math.pow(1 - p, 3);
+        n.textContent = Math.round(target * eased).toLocaleString('en-US');
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }
+
+  /* progress bar and chapter label */
+  var bar = document.getElementById('progressBar');
+  var pill = document.getElementById('chapterPill');
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? h.scrollTop / max : 0;
+    bar.style.transform = 'scaleX(' + p.toFixed(4) + ')';
+  }
+  window.addEventListener('scroll', onScroll, {passive: true});
+  onScroll();
+
+  if ('IntersectionObserver' in window) {
+    var chapters = document.querySelectorAll('[data-chapter]');
+    var cio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { pill.textContent = e.target.getAttribute('data-chapter'); pill.classList.add('on'); }
+      });
+    }, {rootMargin: '-45% 0px -50% 0px'});
+    chapters.forEach(function(c){ cio.observe(c); });
+    var hero = document.getElementById('top');
+    var hio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) pill.classList.remove('on'); });
+    }, {threshold: 0.3});
+    hio.observe(hero);
+  }
+})();
+</script>
+</body>
+</html>
