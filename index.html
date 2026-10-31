@@ -48,7 +48,6 @@ p{margin:0}
 .wide{max-width:1040px;margin-inline:auto}
 .flow{display:grid;gap:1.15em}
 .mono{font-family:var(--font-data);font-size:var(--step--1);letter-spacing:.02em}
-.eyebrow{font-family:var(--font-data);font-size:var(--step--1);text-transform:uppercase;letter-spacing:.12em;color:var(--ink-2)}
 .w{color:var(--women);font-weight:700}
 .m{color:var(--men);font-weight:700}
 cite{font-style:normal;color:var(--ink-2);font-size:.92em;white-space:nowrap}
@@ -62,9 +61,9 @@ cite{font-style:normal;color:var(--ink-2);font-size:.92em;white-space:nowrap}
 /* hero */
 .hero{background:var(--band);padding-block:clamp(3.5rem,8vw,7rem) clamp(3rem,6vw,5rem);position:relative;overflow:hidden}
 .hero__grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(2rem,5vw,5rem);align-items:center}
-.hero h1{font-size:var(--step-3);margin-block:.6em .5em}
+.hero h1{font-size:var(--step-3);margin-block:0 .5em}
 .hero h1 .w{font-weight:700}
-.hero__lede{font-size:var(--step-1);line-height:1.45;max-width:30ch;color:var(--ink)}
+.hero__lede{font-size:var(--step-1);line-height:1.45;max-width:34ch;color:var(--ink)}
 .byline{margin-top:2rem;display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;color:var(--ink-2)}
 .pixels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(1rem,3vw,2rem)}
 .pix{display:grid;gap:.6rem}
@@ -84,9 +83,9 @@ cite{font-style:normal;color:var(--ink-2);font-size:.92em;white-space:nowrap}
 
 /* chapters */
 .chapter{padding-block:clamp(3.5rem,7vw,6rem) 0}
-.chapter__head{display:grid;gap:.9rem;margin-bottom:2rem}
-.chapter__head h2{font-size:var(--step-2);max-width:22ch}
-.chapter__num{font-family:var(--font-data);font-size:var(--step--1);color:var(--women);letter-spacing:.12em;text-transform:uppercase}
+.chapter__head{margin-bottom:2rem;padding-top:1.4rem;border-top:2px solid var(--ink)}
+.chapter__head h2{font-size:var(--step-2);max-width:24ch;display:grid;grid-template-columns:auto minmax(0,1fr);gap:.55em;align-items:baseline}
+.chapter__num{color:var(--women);font-variant-numeric:tabular-nums}
 
 /* figures */
 figure{margin:0}
@@ -102,7 +101,7 @@ details.about summary::-webkit-details-marker{display:none}
 details.about summary::before{content:"+";display:inline-grid;place-items:center;width:1.3em;height:1.3em;border:1px solid currentColor;border-radius:3px;font-size:.9em;line-height:1}
 details.about[open] summary::before{content:"\2212"}
 .about__cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem 2rem;padding-bottom:1rem}
-.about__cols h4{margin:0 0 .4rem;font-family:var(--font-data);font-weight:500;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em}
+.about__cols h4{margin:0 0 .4rem;font-family:var(--font-body);font-weight:700;font-size:var(--step--1)}
 .about__cols ul{margin:0;padding-left:1.1em;display:grid;gap:.35rem;color:var(--ink)}
 
 /* stats */
@@ -120,7 +119,7 @@ details.about[open] summary::before{content:"\2212"}
 
 /* definition callout */
 .define{background:var(--band-soft);border:1px solid var(--line);border-radius:6px;padding:1.1rem 1.25rem;display:grid;gap:.4rem}
-.define .eyebrow{color:var(--teal)}
+.define h3{font-family:var(--font-body);font-size:var(--step-0);line-height:1.35;color:var(--teal)}
 
 /* counted grid */
 .counted{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-block:2rem}
@@ -142,7 +141,6 @@ details.about[open] summary::before{content:"\2212"}
 /* reflection band */
 .reflect{background:var(--ink);color:var(--paper);margin-top:clamp(4rem,8vw,6rem);padding-block:clamp(3.5rem,8vw,6rem)}
 .reflect h2{font-size:var(--step-2);margin-bottom:1.5rem}
-.reflect .eyebrow{color:#F3DECA}
 .reflect a{color:#9ED3DF}
 .reflect .big{font-family:var(--font-display);font-weight:500;font-size:var(--step-1);line-height:1.4;color:#F3DECA}
 
@@ -182,9 +180,8 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
 <header class="hero wrap" id="top">
   <div class="wide hero__grid">
     <div>
-      <p class="eyebrow">A critical data story · Sweden, 2015 to 2025</p>
       <h1>Half of those who play. <span class="w">Less than a quarter</span> of those who make.</h1>
-      <p class="hero__lede">Women in the Swedish gaming industry, and what the numbers can and cannot tell us about gender equality.</p>
+      <p class="hero__lede">A critical data story about women in the Swedish gaming industry from 2015 to 2025, and what the numbers can and cannot tell us about gender equality.</p>
       <p class="byline mono"><span>Lucília Costa Oliveira, Mariia Lieshukova, Martin Politic</span><span>Data and Society, Malmö University</span><span>5 November 2026</span></p>
     </div>
     <div class="pixels" role="img" aria-label="Two grids of 100 squares. Players aged 16 and over in Sweden: 52 of 100 are women. Employees in the Swedish games industry: 24 of 100 are women.">
@@ -219,8 +216,7 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
 <section class="chapter wrap" id="culture" data-chapter="Women in culture">
   <div class="col">
     <div class="chapter__head reveal">
-      <p class="chapter__num">Chapter 1</p>
-      <h2>Women in culture: what do the numbers tell us?</h2>
+      <h2><span class="chapter__num">1</span><span>Women in culture: what do the numbers tell us?</span></h2>
     </div>
     <div class="flow">
       <blockquote class="pull reveal">
@@ -266,8 +262,7 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
 <section class="chapter wrap" id="players" data-chapter="Who plays">
   <div class="col">
     <div class="chapter__head reveal">
-      <p class="chapter__num">Chapter 2</p>
-      <h2>Who plays the games?</h2>
+      <h2><span class="chapter__num">2</span><span>Who plays the games?</span></h2>
     </div>
     <div class="flow">
       <blockquote class="pull reveal">
@@ -304,7 +299,7 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
 
   <div class="col flow">
     <div class="define reveal">
-      <p class="eyebrow">Who counts as a player?</p>
+      <h3>Who counts as a player?</h3>
       <p>Anyone who plays at least <strong>one hour per week</strong>, on any device. In Sweden, the most played genre is puzzle games.</p>
     </div>
     <p class="reveal">The Swedish figure comes from Power of Play 2025, a survey of more than 24,000 players in 21 countries, 1,016 of them in Sweden <cite>(Swedish Games Industry, 2025, p. 45)</cite>. It was carried out by the research firm AudienceNet and released by games industry trade associations, among them Video Games Europe <cite>(Video Games Europe, 2025b)</cite>. By this definition, someone solving a mobile puzzle on the bus and someone playing console games every evening fall into the same category. The near equal balance among players is partly a product of how wide the category is drawn.</p>
@@ -344,8 +339,7 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
 <section class="chapter wrap" id="makers" data-chapter="Who makes">
   <div class="col">
     <div class="chapter__head reveal">
-      <p class="chapter__num">Chapter 3</p>
-      <h2>Who makes the games?</h2>
+      <h2><span class="chapter__num">3</span><span>Who makes the games?</span></h2>
     </div>
     <div class="flow">
       <p class="reveal">To look at employment, we used two occupational categories from Statistics Sweden (SCB): 2173, game and digital media designers, and 2513, game and digital media developers. They cover roles in game graphics, design and programming, and the Game Developer Index uses them too <cite>(Swedish Games Industry, 2025)</cite>.</p>
@@ -375,8 +369,7 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
 <section class="chapter wrap" id="pay" data-chapter="Pay">
   <div class="col">
     <div class="chapter__head reveal">
-      <p class="chapter__num">Chapter 4</p>
-      <h2>What about pay?</h2>
+      <h2><span class="chapter__num">4</span><span>What about pay?</span></h2>
     </div>
     <div class="stats">
       <div class="stat reveal"><span class="stat__n">4,800 SEK</span><span class="stat__l">monthly gap between men and women developers in 2025 (56,400 vs 51,600)</span></div>
@@ -418,8 +411,7 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
 <section class="chapter wrap" id="index" data-chapter="The Index">
   <div class="col">
     <div class="chapter__head reveal">
-      <p class="chapter__num">Chapter 5</p>
-      <h2>Behind the Game Developer Index</h2>
+      <h2><span class="chapter__num">5</span><span>Behind the Game Developer Index</span></h2>
     </div>
     <div class="flow">
       <p class="reveal">Understanding gender representation also means looking at how the industry measures its own progress. The Game Developer Index gives good insight into the industry's development, but what does it actually tell us about gender equality?</p>
@@ -453,8 +445,7 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
   <div class="wide">
     <div class="col">
       <div class="chapter__head reveal">
-        <p class="chapter__num">Chapter 6</p>
-        <h2>What gets counted, and what doesn't</h2>
+        <h2><span class="chapter__num">6</span><span>What gets counted, and what doesn't</span></h2>
       </div>
       <p class="reveal">Across all our sources, some things are measured every year, some only once, and some never. What gets counted shapes what we can know.</p>
     </div>
@@ -494,7 +485,6 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
 <!-- REFLECTION -->
 <section class="reflect wrap" id="reflection" data-chapter="Reflection">
   <div class="col flow">
-    <p class="eyebrow">Critical reflection</p>
     <h2>If the data suddenly disappeared</h2>
     <p class="big reveal">"If the data in your case suddenly disappeared, how would people in this cultural sector make decisions differently?"</p>
     <p class="reveal">Without data, the gender inequality in the sector would be harder to identify, and companies and policymakers would have less evidence to see the disparities and judge whether their initiatives make a difference.</p>
