@@ -71,25 +71,32 @@ cite{font-style:normal;color:var(--ink-2);font-size:.92em;white-space:nowrap}
 @media (max-width:1000px){.toc{display:none}}
 /* when the margin is narrow, nudge the reading column right so the list never overlaps it */
 @media (min-width:1001px){main .col{margin-left:max(174px,calc((100% - 66ch) / 2))}main .col .col{margin-left:0}}
-@keyframes bump{0%{transform:scale(1)}35%{transform:scale(1.18);background:var(--women)}100%{transform:scale(1)}}
 
 /* hero */
 .hero{background:var(--band);padding-block:clamp(3.5rem,8vw,7rem) clamp(3rem,6vw,5rem);position:relative;overflow:hidden;min-height:100vh;min-height:100svh;display:flex;align-items:center;
   /* deeper navy and coral on the beige band: 10.9:1 and 3.9:1 (headline-size text) */
-  --hero-ink:#1E2C3E;--hero-coral:#C2412D;color:var(--hero-ink)}
+  --hero-ink:#1E2C3E;--hero-coral:#C2412D;--you:var(--teal);color:var(--hero-ink)}
 .hero>.wide{flex:1;position:relative;z-index:1}
 /* hand-drawn controllers behind the hero; tiles are placed and moved by JS */
 .hero__pattern{position:absolute;inset:0;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse 62% 44% at 50% 52%,rgba(0,0,0,.14) 55%,#000 100%);mask-image:radial-gradient(ellipse 62% 44% at 50% 52%,rgba(0,0,0,.14) 55%,#000 100%)}
 @media (max-width:820px){.hero__pattern{-webkit-mask-image:linear-gradient(rgba(0,0,0,.22),rgba(0,0,0,.22) 55%,#000 75%);mask-image:linear-gradient(rgba(0,0,0,.22),rgba(0,0,0,.22) 55%,#000 75%)}}
 .hero__pattern img{position:absolute;left:0;top:0;height:auto;will-change:transform;pointer-events:auto;cursor:pointer}
-.hero__pattern img.got{animation:collect .55s cubic-bezier(.3,1.4,.5,1) forwards;pointer-events:none}
-@keyframes collect{0%{scale:1;rotate:0deg}40%{scale:1.7;rotate:-25deg;opacity:.9}100%{scale:0;rotate:200deg;opacity:0}}
-.hero>.wide,.hero__grid{pointer-events:none}
-.hero__grid>*{pointer-events:auto}
-.score{position:absolute;z-index:2;right:var(--gutter-r);bottom:calc(1rem + env(safe-area-inset-bottom,0px));font-family:var(--font-data);font-size:.78rem;color:var(--ink);background:var(--paper);border-radius:99px;padding:.35em .8em;box-shadow:0 1px 0 var(--line);opacity:0;translate:0 8px;transition:opacity .3s,translate .3s}
+.hero__pattern img.got{visibility:hidden;pointer-events:none}
+/* hero text lets clicks through to the controllers behind it; only the grids keep their hover */
+.hero>.wide,.hero__grid,.hero__grid *{pointer-events:none}
+.hero .pix__grid,.hero .pix__grid i{pointer-events:auto}
+/* a collected controller flying to its square */
+.flyer{position:fixed;left:0;top:0;z-index:30;pointer-events:none;will-change:transform,opacity}
+.score{position:absolute;z-index:2;right:var(--gutter-r);bottom:calc(1rem + env(safe-area-inset-bottom,0px));width:min(23rem,calc(100% - 2 * var(--gutter-r)));display:flex;gap:.9rem;align-items:center;font-family:var(--font-data);font-size:.76rem;line-height:1.45;color:var(--hero-ink);background:var(--paper);border-radius:10px;padding:.7rem .85rem;box-shadow:0 1px 0 var(--line);opacity:0;translate:0 8px;transition:opacity .3s,translate .3s}
 .score.on{opacity:1;translate:0 0}
-.score b{color:var(--women)}
-.score.bump{animation:bump .45s cubic-bezier(.3,1.6,.5,1)}
+.score b{color:var(--you);font-weight:500}
+.score p{margin:0}
+/* the reader's own 10 x 10 grid: collected controllers land here, apart from the data */
+.score__grid{flex:none;display:grid;grid-template-columns:repeat(8,1fr);gap:2px;width:60px;aspect-ratio:1}
+.score__grid i{background:#E7D9CB;border-radius:1px}
+.score__grid i.you{background:var(--you);animation:land .5s cubic-bezier(.3,1.7,.5,1)}
+.score.bump{animation:pop .45s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{0%{scale:1}35%{scale:1.06}100%{scale:1}}
 .hero>.wide{will-change:transform,opacity}
 .hero__grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(2rem,5vw,5rem);align-items:center}
 .hero h1{font-size:var(--step-3);margin-block:0 .5em}
@@ -101,6 +108,8 @@ cite{font-style:normal;color:var(--ink-2);font-size:.92em;white-space:nowrap}
 .pix__grid{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;aspect-ratio:1;max-width:100%}
 .pix__grid i{display:block;background:#DCCBBC;border-radius:1px}
 .pix__grid i.on{background:var(--hero-coral)}
+/* squares the reader adds in the mini game: teal, so they never read as data */
+@keyframes land{0%{scale:.2}60%{scale:1.5}100%{scale:1}}
 .pix__grid i{transition:scale .18s cubic-bezier(.3,1.6,.5,1)}
 .pix__grid i:hover{scale:1.45;position:relative;z-index:1}
 .pix__num{font-family:var(--font-display);font-size:var(--step-2);line-height:1;color:var(--hero-coral)}
@@ -250,7 +259,8 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
   .hero__grid{grid-template-columns:minmax(0,1fr)}
   .counted,.inits{grid-template-columns:minmax(0,1fr)}
   .about__cols{grid-template-columns:minmax(0,1fr)}
-  .score{bottom:auto;top:calc(1rem + env(safe-area-inset-top,0px))}
+  .score{position:fixed;left:var(--gutter-l);right:var(--gutter-r);width:auto;bottom:calc(.8rem + env(safe-area-inset-bottom,0px));box-shadow:0 2px 10px rgba(30,44,62,.18)}
+  .score.away{opacity:0;translate:0 8px;pointer-events:none}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -285,7 +295,7 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
 <!-- HERO -->
 <header class="hero wrap" id="top">
   <div class="hero__pattern" id="heroPattern" aria-hidden="true"></div>
-  <p class="score" id="score" aria-hidden="true"></p>
+  <div class="score" id="score" aria-hidden="true"><div class="score__grid" id="scoreGrid"></div><p id="scoreText"></p></div>
   <div class="wide hero__grid">
     <div>
       <h1>Half of those who play. <span class="w">Less than a quarter</span> of those who make.</h1>
@@ -692,7 +702,7 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
   function rand(seed){ return function(){ seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
   function layPattern(){
     var w = hero.offsetWidth, h = hero.offsetHeight, r = rand(7);
-    var step = w < 600 ? 92 : 132, base = w < 600 ? 50 : 70;
+    var step = w < 600 ? 70 : 104, base = w < 600 ? 50 : 70;
     var html = [];
     tiles = [];
     for (var y = -step / 2, row = 0; y < h * 1.9; y += step * .8, row++) {
@@ -722,16 +732,41 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
     heroInner.style.opacity = fits ? Math.max(0, 1 - sc / (h * .85)).toFixed(3) : '';
   }
   layPattern();
-  /* mini game: click the controllers in the hero to collect them */
-  var score = document.getElementById('score'), got = 0;
+  /* mini game: each controller you click flies into your own grid in the corner badge.
+     Milestones at 24 (makers) and 52 (players); the grid holds 64. */
+  var score = document.getElementById('score'), scoreText = document.getElementById('scoreText'), mine = document.getElementById('scoreGrid');
+  var MAKERS = 24, PLAYERS = 52, FULL = 64, filled = 0, landed = 0;
+  mine.innerHTML = new Array(FULL + 1).join('<i></i>');
+  function cellAt(k){ return mine.children[(7 - Math.floor(k / 8)) * 8 + k % 8]; }
+  function tell(){
+    var n = '<b>' + landed + '</b>';
+    scoreText.innerHTML = landed >= FULL
+      ? n + ' collected. Your grid is full. The real ones are not: women are 52 of every 100 players but only 24 of every 100 game makers. Read on to see why.'
+      : landed >= PLAYERS
+      ? n + ' collected: as many as the women among every 100 players. That is more than twice the 24 among every 100 game makers. Why don\u2019t the two match? Fill your grid, or read on.'
+      : landed >= MAKERS
+      ? n + ' collected. At 24 you matched the women among every 100 game makers. Keep going to 52, the women among every 100 players.'
+      : n + ' collected. Keep going.';
+    score.classList.remove('bump'); void score.offsetWidth; score.classList.add('bump');
+  }
+  function land(cell){ landed++; cell.classList.add('you'); tell(); }
   pattern.addEventListener('click', function(e){
     var t = e.target;
-    if (t.tagName !== 'IMG' || t.classList.contains('got')) return;
+    if (t.tagName !== 'IMG' || t.classList.contains('got') || filled >= FULL) return;
+    score.classList.add('on');
+    var cell = cellAt(filled++), from = t.getBoundingClientRect(), to = cell.getBoundingClientRect();
     t.classList.add('got');
-    got++;
-    var rank = got >= 30 ? 'Legend' : got >= 15 ? 'Pro' : got >= 5 ? 'Player' : 'Rookie';
-    score.innerHTML = '<b>' + got + '</b> collected \u00b7 ' + rank;
-    score.classList.add('on'); score.classList.remove('bump'); void score.offsetWidth; score.classList.add('bump');
+    if (reduce) { land(cell); return; }
+    var fly = t.cloneNode();
+    fly.className = 'flyer';
+    fly.style.width = from.width + 'px'; fly.style.opacity = 1;
+    document.body.appendChild(fly);
+    var dx = to.left + to.width / 2 - from.width / 2, dy = to.top + to.height / 2 - from.height / 2, k = to.width / from.width;
+    fly.animate([
+      {transform: 'translate(' + from.left + 'px,' + from.top + 'px) rotate(0deg) scale(1)', opacity: 1},
+      {transform: 'translate(' + ((from.left + dx) / 2) + 'px,' + (Math.min(from.top, dy) - 60) + 'px) rotate(200deg) scale(.8)', opacity: 1, offset: .45},
+      {transform: 'translate(' + dx + 'px,' + dy + 'px) rotate(360deg) scale(' + k + ')', opacity: .2}
+    ], {duration: 650, easing: 'cubic-bezier(.4,0,.3,1)'}).onfinish = function(){ fly.remove(); land(cell); };
   });
   if (!reduce) {
     var cur = {s: window.scrollY, x: 0, y: 0}, goal = {s: window.scrollY, x: 0, y: 0}, visible = true;
@@ -899,6 +934,8 @@ footer.site .wide{display:flex;flex-wrap:wrap;justify-content:space-between;gap:
     document.querySelectorAll('[data-chapter]').forEach(function(c){ cio.observe(c); });
     new IntersectionObserver(function(entries){
       toc.classList.toggle('on', !entries[0].isIntersecting);
+      /* on phones the game badge is pinned to the screen, so tuck it away once the hero is gone */
+      score.classList.toggle('away', !entries[0].isIntersecting);
     }, {threshold: 0.25}).observe(document.getElementById('top'));
   } else toc.classList.add('on');
 
