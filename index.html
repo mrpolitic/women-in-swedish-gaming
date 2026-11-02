@@ -35,7 +35,8 @@
   --gutter-r:max(16px, env(safe-area-inset-right, 0px));
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+/* stop phone browsers from enlarging long paragraphs on their own */
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:var(--step-0);line-height:1.65;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 img{max-width:100%}
 a{color:var(--teal);text-underline-offset:.18em;text-decoration-thickness:1px}
@@ -574,7 +575,13 @@ footer.site .col>span{font-size:var(--step--1)}
 
   <div class="col flow">
     <p class="reveal">To us, no data is still data, and the gaps in it matter. For that reason we find it relevant to mention that the employment numbers are affected by a methodological shift in 2022 and 2023, including a change in the age range and statistical estimation of some occupations <cite>(Statistics Sweden, n.d.-e)</cite>. The salary info, meanwhile, does not tell us whether men and women have the same roles, seniority, contracts or opportunities.</p>
-    <p class="reveal">So the numbers can show that women are entering the industry in greater numbers, and that differences in average pay remain. But we still face an issue we have seen before: the numbers cannot tell us why these differences exist. Research on the Swedish games industry, conducted by Anna Szczepanska <cite>(2023)</cite>, points towards one possible explanation. Although this industry often presents itself as meritocratic, where creativity, talent and passion are seen as important, recruitment can also rely on informal networks. In her article, she argues that “informal recruitment strategies and the formulation of merits may privilege men” <cite>(p. 857)</cite>. Szczepanska <cite>(2023)</cite> also mentions that the industry's idea of “passion” can become “conflated with merit”, potentially helping reproduce existing gender inequalities <cite>(pp. 843, 855-857)</cite>.</p>
+    <p class="reveal">So the numbers can show that women are entering the industry in greater numbers, and that differences in average pay remain. But we still face an issue we have seen before: the numbers cannot tell us why these differences exist. Research on the Swedish games industry, conducted by Anna Szczepanska <cite>(2023)</cite>, points towards one possible explanation. Although this industry often presents itself as meritocratic, where creativity, talent and passion are seen as important, recruitment can also rely on informal networks.</p>
+    <blockquote class="pull reveal">
+      <span class="pull__lead">In her article, she argues that</span>
+      <p>“informal recruitment strategies and the formulation of merits may privilege men”</p>
+      <footer><cite>(p. 857)</cite>.</footer>
+    </blockquote>
+    <p class="reveal">Szczepanska <cite>(2023)</cite> also mentions that the industry's idea of “passion” can become “conflated with merit”, potentially helping reproduce existing gender inequalities <cite>(pp. 843, 855-857)</cite>.</p>
     <p class="reveal">Her research does not prove that these mechanisms explain the differences in our data. Nonetheless, we dare to say that it sure helps to highlight what the numbers alone cannot capture. Employment statistics can show how many women enter the industry, and salary data can reveal differences in average earnings. Still, neither tells us much about the experiences, recruitment practices or working conditions behind these figures. On top of that, missing values and changes in methodology further influence which comparisons we can make.</p>
     <p class="reveal">Ultimately, this raises a bigger question about how we measure gender equality. If we only look at employment numbers and average salaries, we might think we got everything figured out, when, in reality, we're only actually seeing part of the picture. In that sense, the numbers help us identify patterns, but we also need to look beyond them and ask what is happening behind those patterns. If games reflect the culture around us, then it matters not only who makes them, but also who gets the opportunity to do so.</p>
   </div>
@@ -679,7 +686,7 @@ footer.site .col>span{font-size:var(--step--1)}
   <div class="col flow">
     <h2>Critical reflection</h2>
     <p class="reveal">In the assignment support on canvas was a question that stuck with us and inspired a final reflective note for the present report:</p>
-    <p class="big reveal">If the data in your case suddenly disappeared, how would people in this cultural sector make decisions differently?</p>
+    <p class="reveal">If the data in your case suddenly disappeared, how would people in this cultural sector make decisions differently?</p>
     <p class="reveal">This led us to reflect on how the Swedish gaming industry might look without the statistics we have been researching. Without data, the gender inequality present in the sector could become harder to identify, as companies and policymakers would have less evidence to recognize the disparities and assess if their initiatives are actually making a difference.</p>
     <p class="reveal">Plus, our research also showed that having data does not automatically lead to change. Numbers can make inequalities visible, but they are shaped by how information is collected, what is measured, and what is left out. We found missing values, methodological changes and differences, and even other limitations that made us question how complete the picture really is. This made us comprehend that data is not simply a reflection of reality, but also a way of choosing which parts of reality become visible.</p>
     <p class="reveal">Ultimately, we believe that data is essential for identifying and combating inequality, but it should never be seen as the whole story. Even because, yes, numbers can show us where inequalities exist, but it's up to people to understand why they exist and take responsibility for changing them.</p>
