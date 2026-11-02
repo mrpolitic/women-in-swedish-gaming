@@ -208,6 +208,8 @@ details.about[open] .about__cols{animation:open .45s cubic-bezier(.2,.8,.2,1)}
 .js .pull.pending::before{transform:scaleY(0)}
 .pull p{font-family:var(--font-display);font-weight:500;font-size:var(--step-1);line-height:1.35;text-wrap:balance}
 .pull footer{margin-top:.7rem;font-size:var(--step--1);color:var(--ink-2)}
+/* the document's lead-in sentence runs small above the quote, so the wording stays in order */
+.pull__lead{display:block;margin-bottom:.6rem;font-size:var(--step--1);color:var(--ink-2)}
 
 /* definition callout */
 .define{background:var(--band-soft);border:1px solid var(--line);border-radius:6px;padding:1.1rem 1.25rem;display:grid;gap:.4rem}
@@ -330,10 +332,11 @@ footer.site .col>span{font-size:var(--step--1)}
 <!-- INTRO -->
 <section class="wrap question" aria-label="Introduction">
   <div class="col flow">
-    <p class="reveal">"The digital gaming industry has positioned itself as a poster child of the cultural and creative industries" <cite>(Szczepanska, 2023, p. 843)</cite>. Video games combine technical skills with digital art, entertainment and different forms of media, in an industry focused on innovation, entrepreneurship and, as Szczepanska puts it, a "meritocratic work ethic" <cite>(p. 843)</cite>.</p>
-    <p class="reveal">The industry has grown from a niche sector into a global mass market <cite>(Chaminade et al., 2021, p. 132)</cite>, and video games have become "the central platform for everyday communication, extending regional to global social and economic relationships" <cite>(Mortensen et al., 2018, p. 64)</cite>. Sweden is an interesting case: since the late 1990s its games industry has grown through titles such as Minecraft and Candy Crush, and through regional hubs like Malmö <cite>(Chaminade et al., 2021, pp. 132, 135-136)</cite>.</p>
-    <p class="reveal">Yet despite Sweden's reputation as one of the world's most gender-equal countries, inequalities persist in its games industry <cite>(Szczepanska, 2023, pp. 843-846)</cite>. So we asked:</p>
-    <p class="question__q reveal">How has women's representation in the Swedish video game industry changed between 2015 and 2025, and <strong>what does data reveal</strong> about progress towards gender equality?</p>
+    <p class="reveal">“The digital gaming industry has positioned itself as a poster child of the cultural and creative industries” <cite>(Szczepanska, 2023, p. 843)</cite>. Video games combine technical skills with digital art, entertainment and different forms of media, in an industry focused on innovation, entrepreneurship and, as Szczepanska <cite>(2023)</cite> puts it, “meritocratic work ethic” <cite>(p. 843)</cite>.</p>
+    <p class="reveal">As Chaminade et al. <cite>(2021)</cite> explain, this industry has grown from a niche sector into a global mass market capable of producing high revenues around the globe <cite>(p. 132)</cite>. But, beyond their economic significance, video games also play an important role in everyday life. Mortensen et al. <cite>(2018)</cite> describe video games as “process oriented media artifacts”, positioning them as “the central platform for everyday communication, extending regional to global social and economic relationships” <cite>(p. 64)</cite>.</p>
+    <p class="reveal">Sweden provides an interesting case study because its video game industry has experienced significant growth since the late 1990s, gaining international recognition through successful games such as Minecraft and Candy Crush <cite>(Chaminade et al., 2021, pp. 132; 135-136)</cite>. We can see this growth in the development of regional gaming hubs as well, including Malmö and other parts of Southern Sweden, where universities and regional initiatives have supported the industry <cite>(Chaminade et al., 2021, pp. 135-136)</cite>.</p>
+    <p class="reveal">Despite Sweden's reputation as one of the world's most gender-equal countries, gender inequalities persist within its video game industry. Szczepanska <cite>(2023)</cite> stresses the contradiction between the industry's progressive image and the structural inequalities that continue to shape gender representation in it <cite>(pp. 843-846)</cite>. This raises questions about whether the industry's growth has translated into important progress towards gender equality. And so, our project investigates:</p>
+    <p class="question__q reveal">How has women's representation in the Swedish video game industry changed between 2015-2025, and <strong>what does data reveal</strong> about progress towards gender equality?</p>
   </div>
 </section>
 
@@ -346,12 +349,13 @@ footer.site .col>span{font-size:var(--step--1)}
     </div>
     <div class="flow">
       <blockquote class="pull reveal">
-        <p>"The gaming industry isn't a separate satellite", but a "microcosm that's fed by wider culture".</p>
-        <footer>Siobhan Reddy, studio director at Media Molecule, in <cite>Judge (2019)</cite></footer>
+        <span class="pull__lead">In 2019, in an interview to the Guardian discussing the barriers women face in the gaming industry, Siobhan Reddy, studio director at Media Molecule, made the point that</span>
+        <p>“The gaming industry isn't a separate satellite”, but rather a “microcosm that’s fed by wider culture”</p>
+        <footer><cite>(Judge, 2019)</cite>.</footer>
       </blockquote>
-      <p class="reveal">The culture we create, and are a part of, reflects the society we live in. From the films we watch and the music we listen to, to the games we play, culture shapes how we see the world. But who gets to work in the industries that produce it?</p>
-      <p class="reveal">We start in 2015, the year after GamerGate, an online movement that in 2014 brought sexism and the treatment of women in gaming into wider public discussion. The debate also reached Sweden, where several game companies spoke out against the harassment and supported initiatives to make the industry more diverse <cite>(Qvist, 2014)</cite>.</p>
-      <p class="reveal">Across Sweden's cultural sector, the gap between men and women working full-time has narrowed. In 2015, 76.1% of <span class="m">men</span> in cultural employment worked full-time, against 65.4% of <span class="w">women</span>. By 2025, the gap had shrunk from 10.7 to 3.0 percentage points <cite>(Eurostat, n.d.)</cite>.</p>
+      <p class="reveal">The culture we create, and are a part of, reflects the society we live in. From the movies we watch and the music we listen to, to the video games we play, culture shapes how we perceive the world. But who gets to work in the industries that produce it?</p>
+      <p class="reveal">We look at the period from 2015 to 2025, beginning the year after GamerGate brought issues of sexism and harassment in gaming into wider public discussion. This gives us a decade to explore how women's representation in the Swedish gaming industry has changed since then <cite>(Qvist, 2014)</cite>.</p>
+      <p class="reveal">In Sweden, the gap between men and women working full-time in the cultural sector has gotten smaller over the past decade. In 2015, 76.1% of <span class="m">men</span> in cultural employment worked full-time, compared with 65.4% of <span class="w">women</span>. By 2025, the difference lowered to 3% from 10.7% <cite>(Eurostat, n.d.)</cite>.</p>
     </div>
   </div>
 
@@ -379,8 +383,8 @@ footer.site .col>span{font-size:var(--step--1)}
   </figure>
 
   <div class="col flow">
-    <p class="reveal">But what can these numbers really tell us about gender equality? Eurostat's definition of cultural employment is broad, covering everyone from artists to people in non-cultural roles within cultural organisations <cite>(Eurostat, n.d.)</cite>. That gives a comprehensive picture of the sector, but it can hide differences between industries. And a smaller gap in full-time work tells us nothing about equal pay, job security or opportunities.</p>
-    <p class="reveal">To understand what gender equality looks like in one creative industry, we need to look closer. So what happens when we zoom in on Swedish video games?</p>
+    <p class="reveal">But what can these numbers really tell us about greater gender equality over the years? The Eurostat's definition of cultural employment is a broad one, covering a wide range of industries and occupations, from artists to people working in non-cultural roles within cultural organizations <cite>(Eurostat, n.d.)</cite>. This gives us a comprehensive picture of the sector, however it can also hide differences between specific industries. On top of that, even though the gap in full-time employment has attenuated, the numbers are not capable of telling us if women and men have access to equal pay, job security or opportunities.</p>
+    <p class="reveal">To understand what gender equality looks like in a specific creative industry, we need to look a bit closer. So, what happens when we zoom in on the Swedish video game industry?</p>
   </div>
 </section>
 
@@ -393,11 +397,10 @@ footer.site .col>span{font-size:var(--step--1)}
     </div>
     <div class="flow">
       <blockquote class="pull reveal">
-        <p>"In order to attract more women to the industry, more girls must be allowed to keep their interest in video games and the joy of gaming when they grow up."</p>
-        <footer>Swedish Games Industry, the trade organisation behind the Game Developer Index <cite>(2020, p. 15)</cite></footer>
+        <p>“In order to attract more women to the industry, more girls must be allowed to keep their interest in video games and the joy of gaming when they grow up.”</p>
       </blockquote>
-      <p class="reveal">The statement draws a direct line between who plays games today and who will make them tomorrow. So who actually plays?</p>
-      <p class="reveal">At first glance, the answer challenges the idea of gaming as a "boys' thing". According to the industry's latest report, 52% of players aged 16 and over in Sweden are <span class="w">women</span>, 48% are <span class="m">men</span>, and less than 1% selected non-binary or preferred not to say <cite>(Swedish Games Industry, 2025, p. 45)</cite>. Across Europe, 45% of players are women <cite>(Video Games Europe, 2025a, p. 9)</cite>. Yet women make up only 23.5% of the people employed in the Swedish games industry, against 76.3% <span class="m">men</span> <cite>(Swedish Games Industry, 2025, p. 22)</cite>. Half of those who play, less than a quarter of those who make.</p>
+      <p class="reveal">This is how the Swedish Games Industry, the trade organisation behind the Game Developer Index, described the problem in 2020 <cite>(Swedish Games Industry, 2020, p. 15)</cite>. The statement draws a direct line between who plays games today and who will make them tomorrow. So who actually plays?</p>
+      <p class="reveal">At first glance, the answer challenges the idea of gaming as a “boys’ thing”. According to the industry’s latest report, 52% of players aged 16 and over in Sweden are <span class="w">women</span>, 48% are <span class="m">men</span>, and less than 1% selected non-binary or preferred not to say <cite>(Swedish Games Industry, 2025, p. 45)</cite>. Across Europe, 45% of all players are women <cite>(Video Games Europe, 2025a, p. 9)</cite>. Yet, as we saw earlier, women make up only 23.5% of the people employed in the Swedish games industry, against 76.3% <span class="m">men</span> <cite>(Swedish Games Industry, 2025, p. 22)</cite>. Half of those who play, less than a quarter of those who make.</p>
     </div>
   </div>
 
@@ -425,12 +428,8 @@ footer.site .col>span{font-size:var(--step--1)}
   </figure>
 
   <div class="col flow">
-    <div class="define reveal">
-      <h3>Who counts as a player?</h3>
-      <p>Anyone who plays at least <strong>one hour per week</strong>, on any device. In Sweden, the most played genre is puzzle games.</p>
-    </div>
-    <p class="reveal">The Swedish figure comes from Power of Play 2025, a survey of more than 24,000 players in 21 countries, 1,016 of them in Sweden <cite>(Swedish Games Industry, 2025, p. 45)</cite>. It was carried out by the research firm AudienceNet and released by games industry trade associations, among them Video Games Europe <cite>(Video Games Europe, 2025b)</cite>. By this definition, someone solving a mobile puzzle on the bus and someone playing console games every evening fall into the same category. The near equal balance among players is partly a product of how wide the category is drawn.</p>
-    <p class="reveal">Public data on young people tells a different story. The Swedish Media Authority reports that boys "still play considerably more than girls" <cite>(Mediemyndigheten, 2025, p. 14; our translation)</cite>. Among those who play more than three hours on a typical day, the gap is clear in every age group: 38% of <span class="m">boys</span> against 18% of <span class="w">girls</span> aged 9 to 12 and 13 to 16, and 38% against 13% among 17 to 18 year olds <cite>(Mediemyndigheten, 2025, p. 66)</cite>. Earlier data from Internetstiftelsen <cite>(2017)</cite> showed a similar pattern among teenagers, while among adults aged 36 to 55, women played daily slightly more often than men. If, as the industry itself suggests, the interest built in the teenage years shapes who later enters the profession, these numbers point to a pipeline that is still far from balanced.</p>
+    <p class="reveal">But who counts as a player? The Swedish figure comes from Power of Play 2025, a survey of more than 24,000 players in 21 countries, of whom 1,016 lived in Sweden <cite>(Swedish Games Industry, 2025, p. 45)</cite>. It was conducted by the research firm AudienceNet and released by a group of games industry trade associations, among them Video Games Europe <cite>(Video Games Europe, 2025b)</cite>. The survey counts as an active player anyone who plays at least one hour per week, on any device, and in Sweden the most played genre is puzzle games <cite>(Swedish Games Industry, 2025, p. 45)</cite>. By this definition, someone solving a mobile puzzle on the bus and someone playing console games every evening fall into the same category. The near equal gender balance among players is therefore partly a product of how wide the category is drawn.</p>
+    <p class="reveal">Public data on young people tells a different story. In its latest survey of children’s media use, the Swedish Media Authority reports that boys “still play considerably more than girls” <cite>(Mediemyndigheten, 2025, p. 14; our translation)</cite>. When looking at those who play digital games for more than three hours on a typical day, the gap is clear in every age group: 38% of <span class="m">boys</span> against 18% of <span class="w">girls</span> aged 9 to 12 and 13 to 16, and 38% against 13% among 17 to 18 year olds <cite>(Mediemyndigheten, 2025, p. 66)</cite>. Earlier data from Internetstiftelsen <cite>(2017)</cite> showed a similar pattern among teenagers, while among adults aged 36 to 55, women played daily slightly more often than men. If, as the industry itself suggests, the interest built in the teenage years shapes who later enters the profession, these numbers point to a pipeline that is still far from balanced.</p>
   </div>
 
   <figure class="fig col reveal" aria-labelledby="cap3">
@@ -457,8 +456,8 @@ footer.site .col>span{font-size:var(--step--1)}
   </figure>
 
   <div class="col flow">
-    <p class="reveal">These figures also say something about who does the counting. The headline number on players comes from trade associations, which have an interest in presenting games as mainstream culture for everyone. The public figures rely on a survey where only around one in four invited children responded <cite>(Mediemyndigheten, 2025, p. 25)</cite>. Both sort people into binary categories, and the industry survey groups non-binary identities together with "prefer not to say" <cite>(Swedish Games Industry, 2025, p. 45)</cite>. Quantification starts with agreeing on conventions and only then measuring <cite>(Desrosières, 2015, pp. 332-333)</cite>; here, the convention of what counts as "playing", one hour a week or three hours a day, shapes the result. And none of these datasets can tell us why an audience that is close to gender balanced has not produced a balanced workforce.</p>
-    <p class="question__q reveal">So if women make up around half of those who play, <strong>why are they still less than a quarter</strong> of those who make the games?</p>
+    <p class="reveal">These figures also say something about who does the counting. The headline number of players comes from trade associations, which have an interest in presenting games as mainstream culture for everyone. The public figures, on the other hand, rely on a survey where only around one in four invited children responded <cite>(Mediemyndigheten, 2025, p. 25)</cite>. Both sort people into binary categories, and the industry survey groups non-binary identities together with “prefer not to say” <cite>(Swedish Games Industry, 2025, p. 45)</cite>. Quantification starts with agreeing on conventions and only then measuring <cite>(Desrosières, 2015, pp. 332-333)</cite>; here, the convention of what counts as “playing”, whether one hour a week or three hours a day, shapes the result. And none of these datasets can tell us why an audience that is close to gender balanced has not produced a balanced workforce.</p>
+    <p class="question__q reveal">So if women make up around half of those who play, <strong>why do they remain less than a quarter</strong> of those who make the games?</p>
   </div>
 </section>
 
@@ -470,8 +469,9 @@ footer.site .col>span{font-size:var(--step--1)}
       <h2><span class="chapter__num">3</span><span>Who makes the games?</span></h2>
     </div>
     <div class="flow">
-      <p class="reveal">To look at employment, we used two occupational categories from Statistics Sweden (SCB): 2173, game and digital media designers, and 2513, game and digital media developers. They cover roles in game graphics, design and programming, and the Game Developer Index uses them too <cite>(Swedish Games Industry, 2025, p. 19)</cite>.</p>
-      <p class="reveal">They do not cover everyone in the industry. Some game developers fall under other codes, and some designers in these codes work in film or web design. The numbers are an indication of employment in game-related occupations, not a complete count.</p>
+      <p class="reveal">As a way of looking into employment, we used two occupational categories from Statistics Sweden (SCB): 2173 Game and digital media designers, and 2513 Games and digital media developers. These codes cover roles in areas like game graphics, design and programming. We focused on these categories because they are also used in the Game Developer Index to track employment in roles related to game development <cite>(Swedish Games Industry, 2025, p. 19)</cite>.</p>
+      <p class="reveal">However, we must mention that these do not represent everyone that works in the video game industry. In fact, some people working in game development may fall under other occupational codes, and people classified as game and digital media designers may work in other industries as well, for example film or web design. Because of that, the numbers below should be understood more as an indication of employment in some game-related occupations, rather than a complete count of the gaming workforce.</p>
+      <p class="reveal">Between 2015 and 2024, the number of <span class="m">men</span> employed in game and digital media occupations in Sweden increased from 3,479 to 7,081. As we can see below, the number of <span class="w">women</span> also grew, from 795 to 2,252. So, women’s employment (almost) tripled over the period, yet they remained a clear minority of the workforce <cite>(Statistics Sweden, n.d.-c, n.d.-d, n.d.-e)</cite>.</p>
     </div>
     <div class="stats">
       <div class="stat reveal"><span class="stat__n" data-count="7081">7,081</span><span class="stat__l">men in these occupations in 2024, up from 3,479 in 2015</span></div>
@@ -504,7 +504,7 @@ footer.site .col>span{font-size:var(--step--1)}
   </figure>
 
   <div class="col flow">
-    <p class="reveal">The numbers show progress, but not a fundamental shift in the gender balance. As the industry grew <cite>(Chaminade et al., 2021, p. 132)</cite>, employment rose for both men and women. Growth alone did not remove the imbalance, which complicates the idea that a bigger industry automatically means better representation.</p>
+    <p class="reveal">While the numbers are capable of showing progress, they lack when trying to make a case for a fundamental shift in the gender balance. As the industry grew over the years <cite>(Chaminade, 2021, p. 132)</cite>, employment increased for both men and women. This suggests that growth alone did not eliminate the gender imbalances, even though women’s employment increased. This complicates the idea that a larger industry will automatically create greater representation.</p>
     <p class="reveal">But representation is only one part of the picture. What about pay?</p>
   </div>
 </section>
@@ -520,7 +520,7 @@ footer.site .col>span{font-size:var(--step--1)}
       <div class="stat reveal"><span class="stat__n">4,800 SEK</span><span class="stat__l">monthly gap between men and women developers in 2025 (56,400 vs 51,600)</span></div>
       <div class="stat stat--w reveal"><span class="stat__n">9,200 SEK</span><span class="stat__l">monthly gap between men and women designers in 2025 (51,900 vs 42,700)</span></div>
     </div>
-    <p class="reveal">Among game and digital media developers, men earned more than women in most years. The gap was not constant: it narrowed around 2019 and 2020, but remained visible in 2024 and 2025. In 2025, the average monthly salary was 56,400 SEK for men and 51,600 SEK for women <cite>(Statistics Sweden, n.d.-a, n.d.-b)</cite>.</p>
+    <p class="reveal">Among game and digital media developers, men earned more than women in most of the years. This gap wasn’t constant though. It narrowed in some years, particularly around 2019-2020, having remained visible in 2024 and 2025. In 2025, the average monthly salary was 56,400 SEK for men and 51,600 SEK for women <cite>(Statistics Sweden, n.d.-a, n.d.-b)</cite>.</p>
   </div>
 
   <figure class="fig col reveal" aria-labelledby="cap5">
@@ -547,7 +547,7 @@ footer.site .col>span{font-size:var(--step--1)}
   </figure>
 
   <div class="col flow">
-    <p class="reveal">The picture is less consistent among designers. In some years, women's average salary was close to or even higher than men's, while in 2025 the difference was much larger: 51,900 SEK for men against 42,700 SEK for women <cite>(Statistics Sweden, n.d.-a, n.d.-b)</cite>. Data on men's salaries is missing for 2021 and 2022, so those years cannot show a continuous trend.</p>
+    <p class="reveal">The picture is less consistent among designers. As we can see in the visualization below, in some years, women's average salary was close to or even higher than men's, while in 2025 the difference was much larger: 51,900 SEK for men compared with 42,700 SEK for women <cite>(Statistics Sweden, n.d.-a, n.d.-b)</cite>. However, we must note that data concerning male salary is missing for 2021 and 2022. This means these years can’t be used to establish a continuous trend.</p>
   </div>
 
   <figure class="fig col reveal" aria-labelledby="cap6">
@@ -573,13 +573,10 @@ footer.site .col>span{font-size:var(--step--1)}
   </figure>
 
   <div class="col flow">
-    <p class="reveal">To us, no data is still data, and the gaps matter. The employment numbers are affected by a methodological shift in 2022 and 2023, including a change in the age range and statistical estimation of some occupations <cite>(Statistics Sweden, n.d.-e)</cite>. The salary figures also cannot tell us whether men and women have the same roles, seniority, contracts or opportunities.</p>
-    <p class="reveal">So the numbers show that more women are entering the industry and that differences in pay remain. They cannot tell us why. Research on the Swedish games industry points to one possible explanation: although the industry presents itself as meritocratic, recruitment often relies on informal networks.</p>
-    <blockquote class="pull reveal">
-      <p>"Informal recruitment strategies and the formulation of merits may privilege men."</p>
-      <footer>Anna Szczepanska <cite>(2023, p. 857)</cite>, who also shows how the industry's idea of "passion" can become "conflated with merit" <cite>(pp. 843, 855-857)</cite></footer>
-    </blockquote>
-    <p class="reveal">Her research does not prove that these mechanisms explain our data. But it shows what the numbers alone cannot capture: the experiences, recruitment practices and working conditions behind them. Missing values and changes in methodology also limit which comparisons we can make. If we only look at employment numbers and average salaries, we might think we have it all figured out, when we are only seeing part of the picture. If games reflect the culture around us, it matters not only who makes them, but who gets the opportunity to.</p>
+    <p class="reveal">To us, no data is still data, and the gaps in it matter. For that reason we find it relevant to mention that the employment numbers are affected by a methodological shift in 2022 and 2023, including a change in the age range and statistical estimation of some occupations <cite>(Statistics Sweden, n.d.-e)</cite>. The salary info, meanwhile, does not tell us whether men and women have the same roles, seniority, contracts or opportunities.</p>
+    <p class="reveal">So the numbers can show that women are entering the industry in greater numbers, and that differences in average pay remain. But we still face an issue we have seen before: the numbers cannot tell us why these differences exist. Research on the Swedish games industry, conducted by Anna Szczepanska <cite>(2023)</cite>, points towards one possible explanation. Although this industry often presents itself as meritocratic, where creativity, talent and passion are seen as important, recruitment can also rely on informal networks. In her article, she argues that “informal recruitment strategies and the formulation of merits may privilege men” <cite>(p. 857)</cite>. Szczepanska <cite>(2023)</cite> also mentions that the industry's idea of “passion” can become “conflated with merit”, potentially helping reproduce existing gender inequalities <cite>(pp. 843, 855-857)</cite>.</p>
+    <p class="reveal">Her research does not prove that these mechanisms explain the differences in our data. Nonetheless, we dare to say that it sure helps to highlight what the numbers alone cannot capture. Employment statistics can show how many women enter the industry, and salary data can reveal differences in average earnings. Still, neither tells us much about the experiences, recruitment practices or working conditions behind these figures. On top of that, missing values and changes in methodology further influence which comparisons we can make.</p>
+    <p class="reveal">Ultimately, this raises a bigger question about how we measure gender equality. If we only look at employment numbers and average salaries, we might think we got everything figured out, when, in reality, we're only actually seeing part of the picture. In that sense, the numbers help us identify patterns, but we also need to look beyond them and ask what is happening behind those patterns. If games reflect the culture around us, then it matters not only who makes them, but also who gets the opportunity to do so.</p>
   </div>
 </section>
 
@@ -591,8 +588,8 @@ footer.site .col>span{font-size:var(--step--1)}
       <h2><span class="chapter__num">5</span><span>Behind the Game Developer Index</span></h2>
     </div>
     <div class="flow">
-      <p class="reveal">Understanding gender representation also means looking at how the industry measures its own progress. The Game Developer Index gives good insight into the industry's development, but what does it actually tell us about gender equality?</p>
-      <p class="reveal">In 2015, the Index counted 651 women, 18% of the reported workforce in Sweden. By 2024 it counted 2,150 women, or 23.5% <cite>(Swedish Games Industry, 2020, p. 15; 2025, p. 67)</cite>. Women's representation has increased, but growth in the number of women employed is not the same as growth in their share of the workforce. In 2025, women made up 25.2% of employees in member companies, a small further increase <cite>(Dataspelsbranschen, 2026, p. 25)</cite>.</p>
+      <p class="reveal">Beyond employment and salary figures, understanding gender representation also means looking at how the gaming industry attempts to address the imbalance and how its progress is measured. The Game Developer Index provides good insights into the industry’s development in Sweden, but what does it actually tell us about gender equality?</p>
+      <p class="reveal">In 2015, women accounted for 651 employees, representing 18% of the reported workforce in Sweden. By 2024, this had increased to 2150 women, or 23.5% of employees <cite>(Swedish Games Industry, 2020, p. 15; Swedish Games Industry, 2025, p. 67)</cite>. These numbers suggest that women's representation in the Swedish gaming industry has increased. But it is important to distinguish between growth in the number of women employed and growth in their share of the workforce. In 2025, the picture didn't change much, as women made up 25.2% of employees in member companies, suggesting a further increase in representation <cite>(Dataspelsbranschen, 2026, p. 25)</cite>.</p>
     </div>
   </div>
 
@@ -619,16 +616,17 @@ footer.site .col>span{font-size:var(--step--1)}
   </figure>
 
   <div class="col flow">
-    <p class="reveal">The industry has argued that more girls need to stay interested in games as they grow up <cite>(Swedish Games Industry, 2020, p. 16)</cite>. Yet its own 2025 report shows women are already 52% of players and only 23.5% of the workforce <cite>(2025, pp. 22, 45)</cite>. If women already make up half of all players, can a lack of interest really explain why so few work in the industry?</p>
-    <p class="reveal">The reports also describe initiatives aimed at women's participation <cite>(Swedish Games Industry, 2020, p. 16; 2024, p. 24)</cite>:</p>
+    <p class="reveal">The industry has argued that, to attract more women into game development, more girls need to stay interested in video games as they grow up <cite>(Swedish Games Industry, 2020, p. 16)</cite>. However, the Game Developer Index 2025 reports that in 2024 women make up 52% of players in Sweden, while accounting for only 23.5% of the gaming workforce <cite>(Swedish Games Industry, 2025, pp. 22, 45)</cite>.</p>
+    <p class="reveal">This contrast raises an important question: if women already represent around half of players, is maintaining their interest in gaming enough to explain their underrepresentation? The numbers cannot explain why this gap exists, but it suggests that we need to look beyond gaming participation and consider other factors that influence women's entry into the industry.</p>
+    <p class="reveal">From the report of 2020 we can find information about several initiatives that try to encourage women's participation in the gaming industry.</p>
     <div class="inits">
-      <div class="init reveal"><h3>Games by Her</h3><p>A course for women and non-binary people who want to learn about the industry.</p></div>
-      <div class="init reveal"><h3>Leveling the Playing Field</h3><p>Coffee Stain's initiative supporting smaller studios that employ at least as many women as men.</p></div>
-      <div class="init reveal"><h3>King and Swedish Games Industry mentorship</h3><p>Mentoring, events and networking for women and non-binary participants.</p></div>
+      <div class="init reveal"><h3>Games by Her</h3><p>Games by Her offers a course for women and non-binary people who want to learn about the industry.</p></div>
+      <div class="init reveal"><h3>Leveling the Playing Field</h3><p>Leveling the Playing Field, an initiative by Coffee Stain, supports smaller studios that employ at least as many women as men.</p></div>
+      <div class="init reveal"><h3>King and Swedish Games Industry mentorship</h3><p>More recently, King and the Swedish Games Industry introduced a mentorship program for women and non-binary participants, offering mentoring, events and networking opportunities <cite>(Swedish Games Industry, 2020, p. 16; Swedish Games Industry, 2024, p. 24)</cite>.</p></div>
     </div>
-    <p class="reveal">Their existence shows efforts to address the imbalance. It does not show whether they have increased women's employment or improved their chances to progress.</p>
-    <p class="reveal">Gaps in public information also affect the data. Many small, medium-sized and even large companies do not publish employee information in their annual reports or on their websites <cite>(Swedish Games Industry, 2021, p. 16)</cite>, and freelancers and subcontractors may be missing from the counts <cite>(Swedish Games Industry, 2020, p. 9)</cite>. Earlier figures also change between reports: the 2019 Index counted 1,699 women for 2018, while the 2021 Index gave 1,036 for the same year.</p>
-    <p class="reveal">Finally, it matters who produces these numbers. The Index is published by a trade association that represents the sector and is partly funded through membership fees. That does not make the data unreliable, but its reports aim first of all to show the sector's development, so the numbers reflect how the industry chooses to measure and present itself.</p>
+    <p class="reveal">These initiatives demonstrate efforts to address the gender imbalance. However, their existence alone does not show whether they have increased women's employment or improved their opportunities to progress within the industry.</p>
+    <p class="reveal">Gaps in publicly available information also affect the reliability of the workforce data. The Game Developer Index 2021 notes that although listed companies must report this information in their annual accounts, many small, medium-sized, and even large companies do not include it in their annual reports or on their websites <cite>(Swedish Games Industry, 2021, p. 16)</cite>. This raises questions about how completely women's representation can be measured across the industry. Missing information may leave the statistics incomplete, limiting our ability to assess progress towards gender equality. Freelancers and subcontractors may also be missing from the reported employee counts <cite>(Swedish Games Industry, 2020, p. 9)</cite>.</p>
+    <p class="reveal">Considering who or what is behind the production of these numbers and reports is also important. From our research we gathered that the Game Developer Index is published by the Swedish Games Industry, a trade association that represents companies in the sector and is funded partly through membership fees. This doesn’t necessarily mean that the data is unreliable, but it is worth considering the position from which it is produced. As an organization that represents the interests of the games industry, its reports aim, in the first place, to provide an overview of the sector's development. This means that the numbers should also be understood in the context of how the industry chooses to measure and present itself.</p>
   </div>
 </section>
 
@@ -670,7 +668,7 @@ footer.site .col>span{font-size:var(--step--1)}
       </div>
     </div>
     <div class="col flow">
-      <p class="reveal">So while the reports and our other sources offer valuable insight into employment and growth, they are not designed to assess gender equality or the experiences of the people working in the industry. Whose perspectives are represented in these statistics, and whose are left out? We don't know. That is why understanding gender equality means looking not only at what the numbers show, but at who produces them, what they are designed to measure, and what falls outside their scope.</p>
+      <p class="reveal">So, while the reports (and our other sources) offer valuable insights into employment and industry growth, they are not designed to provide a complete assessment of gender equality or the experiences of people working within it. And, this raises an important question: whose perspectives and experiences are represented in these statistics, and whose might be left out? The truth is we don’t know, and that is why, ultimately, understanding gender equality requires looking not only at what the numbers show, but also at who produces them, what they are designed to measure and what falls outside their scope.</p>
     </div>
   </div>
 </section>
@@ -679,11 +677,12 @@ footer.site .col>span{font-size:var(--step--1)}
 <section class="reflect wrap" id="reflection" data-chapter="Reflection">
   <div class="reflect__pattern" id="reflectPattern" aria-hidden="true"></div>
   <div class="col flow">
-    <h2>If the data suddenly disappeared</h2>
-    <p class="big reveal">"If the data in your case suddenly disappeared, how would people in this cultural sector make decisions differently?"</p>
-    <p class="reveal">Without data, the gender inequality in the sector would be harder to identify, and companies and policymakers would have less evidence to see the disparities and judge whether their initiatives make a difference.</p>
-    <p class="reveal">But our research also showed that having data does not automatically lead to change. Numbers make inequalities visible, yet they are shaped by how information is collected, what is measured and what is left out. We found missing values, methodological changes and other limitations that made us question how complete the picture is. Data is not simply a reflection of reality; it is also a way of choosing which parts of reality become visible.</p>
-    <p class="reveal">Data is essential for identifying and fighting inequality, but it should never be seen as the whole story. Numbers can show us where inequalities exist. It is up to people to understand why they exist, and to take responsibility for changing them.</p>
+    <h2>Critical reflection</h2>
+    <p class="reveal">In the assignment support on canvas was a question that stuck with us and inspired a final reflective note for the present report:</p>
+    <p class="big reveal">If the data in your case suddenly disappeared, how would people in this cultural sector make decisions differently?</p>
+    <p class="reveal">This led us to reflect on how the Swedish gaming industry might look without the statistics we have been researching. Without data, the gender inequality present in the sector could become harder to identify, as companies and policymakers would have less evidence to recognize the disparities and assess if their initiatives are actually making a difference.</p>
+    <p class="reveal">Plus, our research also showed that having data does not automatically lead to change. Numbers can make inequalities visible, but they are shaped by how information is collected, what is measured, and what is left out. We found missing values, methodological changes and differences, and even other limitations that made us question how complete the picture really is. This made us comprehend that data is not simply a reflection of reality, but also a way of choosing which parts of reality become visible.</p>
+    <p class="reveal">Ultimately, we believe that data is essential for identifying and combating inequality, but it should never be seen as the whole story. Even because, yes, numbers can show us where inequalities exist, but it's up to people to understand why they exist and take responsibility for changing them.</p>
   </div>
 </section>
 
@@ -693,15 +692,17 @@ footer.site .col>span{font-size:var(--step--1)}
     <section id="design" data-chapter="Design choices" aria-labelledby="design-h">
       <h2 id="design-h">Design choices</h2>
       <div class="flow">
-        <p>Our design choices were guided by three principles: good data visualisation should be trustworthy, accessible and elegant <cite>(Kirk, 2019, p. 38)</cite>. The charts are built in Flourish, so readers can hover over values and explore the data, and we kept to familiar chart types: bars for comparisons, lines for change over time. Bars always start at zero, and lines connect only years for which data exists.</p>
-        <p>For colour, we aimed to "establish meaning first and worry about decoration last" <cite>(Kirk, 2019, p. 249)</cite>. The same colour always represents the same group: coral for women and girls, navy for men and boys, and grey for missing values. Aware that pink and blue reproduce gender stereotypes <cite>(Muth, 2018, para. 6)</cite>, we avoided pastel tones, while acknowledging that a warm and cool pairing still echoes this convention. We checked colours against WCAG 2.2, which requires a contrast ratio of at least 3:1 for graphical elements and 4.5:1 for text, and never uses colour as the only way of conveying information <cite>(W3C, 2024)</cite>. We therefore darkened our original coral, tested the palette for colour vision deficiency, and added direct labels to every chart. Data, "if properly contextualized, can be an incredibly powerful tool to write more meaningful and intimate narratives" <cite>(Lupi, 2017, para. 21)</cite>, so every chart shows its source and notes on definitions and methodological breaks, and "About this data" opens the strengths and limits of each dataset.</p>
+        <p>Our design choices were guided by three principles that good data visualization should be trustworthy, accessible and elegant <cite>(Kirk, 2019, p. 38)</cite>. We built the charts in Flourish, so readers of our digital article can hover over values and explore the data themselves, and we kept to familiar chart types: bars for comparisons, lines for change over time. Bars always start at zero, and lines connect only years for which data exists.</p>
+        <p>For colour, we aimed to “establish meaning first and worry about decoration last” <cite>(Kirk, 2019, p. 249)</cite>, using colour for data legibility <cite>(Kirk, 2019, p. 252)</cite>. The same colour always represents the same group: coral for women and girls, navy for men and boys, and grey for missing values. Aware that pink and blue reproduce gender stereotypes <cite>(Muth, 2018, para. 6)</cite>, we avoided pastel tones, while acknowledging that a warm and cool pairing still echoes this convention.</p>
+        <p>We checked all colours against WCAG 2.2, which requires a contrast ratio of at least 3:1 for graphical elements and 4.5:1 for text, and states that colour should never be the only way of conveying information <cite>(W3C, 2024)</cite>. We therefore darkened our original coral, tested the palette for colour vision deficiency, and added direct labels to every chart.</p>
+        <p>Also, data, “if properly contextualized, can be an incredibly powerful tool to write more meaningful and intimate narratives” <cite>(Lupi, 2017, para. 21)</cite>. Each chart therefore shows its source and notes on definitions and methodological breaks directly on the visual, so readers see the data’s limitations where the numbers are.</p>
       </div>
     </section>
 
     <section id="references" data-chapter="References" aria-labelledby="refs-h">
       <h2 id="refs-h">References</h2>
       <ul class="refs">
-        <li>Chaminade, C., Martin, R., &amp; McKeever, J. (2021). When regional meets global: Exploring the nature of global innovation networks in the video game industry in Southern Sweden. <i>Entrepreneurship &amp; Regional Development, 33</i>(1-2), 131-146. <a href="https://doi.org/10.1080/08985626.2020.1736184">https://doi.org/10.1080/08985626.2020.1736184</a></li>
+        <li>Chaminade, C., Martin, R., &amp; McKeever, J. (2021). When regional meets global: exploring the nature of global innovation networks in the video game industry in Southern Sweden. <i>Entrepreneurship &amp; Regional Development, 33</i>(1-2), 131-146. <a href="https://doi.org/10.1080/08985626.2020.1736184">https://doi.org/10.1080/08985626.2020.1736184</a></li>
         <li>Dataspelsbranschen. (2026, April 29). <i>Annual report 2025</i>. <a href="https://www.dataspelsbranschen.se/rapporter/annual-report-2025/">https://www.dataspelsbranschen.se/rapporter/annual-report-2025/</a></li>
         <li>Desrosières, A. (2015). Retroaction: How indicators feed back onto quantified actors. In R. Rottenburg, S. E. Merry, S.-J. Park, &amp; J. Mugler (Eds.), <i>The world of indicators: The making of governmental knowledge through quantification</i> (pp. 329-353). Cambridge University Press.</li>
         <li>Eurostat. (n.d.). <i>Cultural employment by sex (cult_emp_sex)</i>. <a href="https://doi.org/10.2908/CULT_EMP_SEX">https://doi.org/10.2908/CULT_EMP_SEX</a></li>
@@ -710,7 +711,7 @@ footer.site .col>span{font-size:var(--step--1)}
         <li>Kirk, A. (2019). <i>Data visualisation: A handbook for data driven design</i> (2nd ed.). SAGE Publications.</li>
         <li>Lupi, G. (2017). <i>Data humanism: The revolution will be visualized</i>. Print. <a href="https://giorgialupi.com/data-humanism-my-manifesto-for-a-new-data-wold">https://giorgialupi.com/data-humanism-my-manifesto-for-a-new-data-wold</a></li>
         <li>Mediemyndigheten. (2025). <i>Ungar &amp; medier 2025</i>. <a href="https://mediemyndigheten.se/globalassets/rapporter-och-analyser/ungar--medier/mediemyndigheten-rapport-ungar-och-medier.pdf">https://mediemyndigheten.se/globalassets/rapporter-och-analyser/ungar--medier/mediemyndigheten-rapport-ungar-och-medier.pdf</a></li>
-        <li>Mortensen, T., Witkowski, E., &amp; Toft-Nielsen, C. (2018). Introduction to special issue: Media-ludic approaches: Critical reflections on games and research practice. <i>MedieKultur: Journal of Media and Communication Research, 34</i>(64), 1-9. <a href="https://doi.org/10.7146/mediekultur.v34i64.105913">https://doi.org/10.7146/mediekultur.v34i64.105913</a></li>
+        <li>Mortensen, T., Witkowski, E., &amp; Toft-Nielsen, C. (2018). Introduction to Special Issue: Media-ludic approaches: Critical reflections on games and research practice. <i>MedieKultur: Journal of Media and Communication Research, 34</i>(64), 1-9. <a href="https://doi.org/10.7146/mediekultur.v34i64.105913">https://doi.org/10.7146/mediekultur.v34i64.105913</a></li>
         <li>Muth, L. C. (2018, July 10). <i>An alternative to pink &amp; blue: Colors for gender data</i>. Datawrapper. <a href="https://www.datawrapper.de/blog/gendercolor">https://www.datawrapper.de/blog/gendercolor</a></li>
         <li>Qvist, B. (2014, December 18). Gamergate: Swedish gaming companies tackle sexism in video games. <i>The Guardian</i>. <a href="https://www.theguardian.com/sustainable-business/2014/dec/19/gamergate-swedish-gaming-companies-tackle-sexism-in-video-games">https://www.theguardian.com/sustainable-business/2014/dec/19/gamergate-swedish-gaming-companies-tackle-sexism-in-video-games</a></li>
         <li>Statistics Sweden. (n.d.-a). <i>Average monthly salary by occupation (SSYK 2012), region and sex (year 2014-2022)</i>. <a href="https://www.statistikdatabasen.scb.se/pxweb/en/ssd/START__AM__AM0110__AM0110A/LonYrkeRegion4A/">https://www.statistikdatabasen.scb.se/pxweb/en/ssd/START__AM__AM0110__AM0110A/LonYrkeRegion4A/</a></li>
@@ -724,7 +725,7 @@ footer.site .col>span{font-size:var(--step--1)}
         <li>Swedish Games Industry. (2025). <i>Game developer index 2025</i>. <a href="https://www.dataspelsbranschen.se/wp-content/uploads/2026/01/Game-Developer-Index-2025-ENG-WEB.pdf">https://www.dataspelsbranschen.se/wp-content/uploads/2026/01/Game-Developer-Index-2025-ENG-WEB.pdf</a></li>
         <li>Szczepanska, A. M. (2023). Women's inclusion and neoliberal governmentality in the Swedish digital game industry: An analysis of discursive positions and recruitment strategies. <i>Gender, Work &amp; Organization, 30</i>(3), 842-861. <a href="https://doi.org/10.1111/gwao.12923">https://doi.org/10.1111/gwao.12923</a></li>
         <li>Video Games Europe. (2025a). <i>All about video games: European key facts 2024</i>. <a href="https://vge.project-n.com/payload-api/media/file/VGE-2024-Key-Facts-Report_102025-1.pdf">https://vge.project-n.com/payload-api/media/file/VGE-2024-Key-Facts-Report_102025-1.pdf</a></li>
-        <li>Video Games Europe. (2025b, October 8). <i>Global report: Video games transcend entertainment and affect positive change in players' lives</i>. <a href="https://videogameseurope.eu/news/global-report-video-games-transcend-entertainment-and-affect-positive-change-in-players-lives/">https://videogameseurope.eu/news/global-report-video-games-transcend-entertainment-and-affect-positive-change-in-players-lives/</a></li>
+        <li>Video Games Europe. (2025b, October 8). <i>Global report: Video games transcend entertainment and affect positive change in players’ lives</i>. <a href="https://videogameseurope.eu/news/global-report-video-games-transcend-entertainment-and-affect-positive-change-in-players-lives/">https://videogameseurope.eu/news/global-report-video-games-transcend-entertainment-and-affect-positive-change-in-players-lives/</a></li>
         <li>W3C. (2024). <i>Web content accessibility guidelines (WCAG) 2.2</i>. <a href="https://www.w3.org/TR/WCAG22/">https://www.w3.org/TR/WCAG22/</a></li>
       </ul>
     </section>
