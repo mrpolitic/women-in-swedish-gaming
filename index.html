@@ -127,6 +127,8 @@ cite{font-style:normal;color:var(--ink-2);font-size:.92em;white-space:nowrap}
 .question{padding-block:clamp(3rem,7vw,5.5rem)}
 .question__q{font-family:var(--font-display);font-weight:500;font-size:var(--step-2);line-height:1.22;text-wrap:balance;max-width:28ch}
 .question__q strong{font-weight:700;color:var(--women)}
+/* long words like "underrepresentation" can be wider than a phone, so the big questions scale down on narrow screens */
+.question__q{font-size:min(var(--step-2),6.4vw);overflow-wrap:break-word}
 
 /* chapters */
 .chapter{padding-block:clamp(3.5rem,7vw,6rem) 0;overflow-x:clip}
@@ -625,7 +627,9 @@ footer.site .col>span{font-size:var(--step--1)}
 
   <div class="col flow">
     <p class="reveal">The industry has argued that, to attract more women into game development, more girls need to stay interested in video games as they grow up <cite>(Swedish Games Industry, 2020, p. 16)</cite>. However, the Game Developer Index 2025 reports that in 2024 women make up 52% of players in Sweden, while accounting for only 23.5% of the gaming workforce <cite>(Swedish Games Industry, 2025, pp. 22, 45)</cite>.</p>
-    <p class="reveal">This contrast raises an important question: if women already represent around half of players, is maintaining their interest in gaming enough to explain their underrepresentation? The numbers cannot explain why this gap exists, but it suggests that we need to look beyond gaming participation and consider other factors that influence women's entry into the industry.</p>
+    <p class="reveal">This contrast raises an important question:</p>
+    <p class="question__q reveal">if women already represent around half of players, is maintaining their interest in gaming <strong>enough to explain their underrepresentation?</strong></p>
+    <p class="reveal">The numbers cannot explain why this gap exists, but it suggests that we need to look beyond gaming participation and consider other factors that influence women's entry into the industry.</p>
     <p class="reveal">From the report of 2020 we can find information about several initiatives that try to encourage women's participation in the gaming industry.</p>
     <div class="inits">
       <div class="init reveal"><h3>Games by Her</h3><p>Games by Her offers a course for women and non-binary people who want to learn about the industry.</p></div>
@@ -685,9 +689,7 @@ footer.site .col>span{font-size:var(--step--1)}
 <section class="reflect wrap" id="reflection" data-chapter="Reflection">
   <div class="reflect__pattern" id="reflectPattern" aria-hidden="true"></div>
   <div class="col flow">
-    <h2>Critical reflection</h2>
-    <p class="reveal">In the assignment support on canvas was a question that stuck with us and inspired a final reflective note for the present report:</p>
-    <p class="reveal">If the data in your case suddenly disappeared, how would people in this cultural sector make decisions differently?</p>
+    <h2>If the data in your case suddenly disappeared, how would people in this cultural sector make decisions differently?</h2>
     <p class="reveal">This led us to reflect on how the Swedish gaming industry might look without the statistics we have been researching. Without data, the gender inequality present in the sector could become harder to identify, as companies and policymakers would have less evidence to recognize the disparities and assess if their initiatives are actually making a difference.</p>
     <p class="reveal">Plus, our research also showed that having data does not automatically lead to change. Numbers can make inequalities visible, but they are shaped by how information is collected, what is measured, and what is left out. We found missing values, methodological changes and differences, and even other limitations that made us question how complete the picture really is. This made us comprehend that data is not simply a reflection of reality, but also a way of choosing which parts of reality become visible.</p>
     <p class="reveal">Ultimately, we believe that data is essential for identifying and combating inequality, but it should never be seen as the whole story. Even because, yes, numbers can show us where inequalities exist, but it's up to people to understand why they exist and take responsibility for changing them.</p>
